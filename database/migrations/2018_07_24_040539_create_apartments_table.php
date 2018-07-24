@@ -16,8 +16,8 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name', 100)->nullable(true)->collation('utf8mb4_general_ci')->comment('ชื่อ apartments');
-            $table->smallInteger('status');
+            $table->string('name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อ apartments');
+            $table->smallInteger('status')->comment('0 = in-active, 1 = active');
             $table->timestamps();
         });
     }
