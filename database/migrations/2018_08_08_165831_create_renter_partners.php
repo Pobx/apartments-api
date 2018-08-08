@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRenterPartners extends Migration
 {
@@ -13,8 +13,12 @@ class CreateRenterPartners extends Migration
      */
     public function up()
     {
-        Schema::create('renter_partners', function (Blueprint $table) {
+        Schema::create('renter_partners', function (Blueprint $table)
+        {
             $table->increments('id');
+            $table->string('first_name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อ');
+            $table->string('last_name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('สกุล');
+            $table->string('mobile', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('เบอร์มือถือ');
             $table->timestamps();
         });
     }
