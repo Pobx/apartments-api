@@ -17,7 +17,8 @@ class CreateApartmentsTable extends Migration
         {
             $table->increments('id');
             $table->string('name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อ apartments');
-            $table->smallInteger('status')->comment('0 = in-active, 1 = active');
+            // $table->smallInteger('status')->comment('0 = in-active, 1 = active');
+            $table->enum('status', ['new_apartment', 'active_apartment', 'disabled_apartment', 'maintennace_apartment'])->default('new_apartment');
             $table->timestamps();
         });
     }
