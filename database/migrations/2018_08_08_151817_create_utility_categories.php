@@ -21,7 +21,7 @@ class CreateUtilityCategories extends Migration
             $table->float('price_per_unit', 10, 2)->comment('ราคาขาย น้ำ-ไฟ');
             $table->float('unit_min_rate', 10, 2)->comment('หน่วยขั้นต่ำ');
             $table->float('unit_min_price', 10, 2)->comment('ราคาขายเหมาหน่วยขั้นต่ำ');
-            $table->enum('type', ['unit', 'monthly'])->default('unit');
+            $table->enum('type', ['unit', 'monthly'])->default('unit')->comment('หน่วย/รายเดือน');
             $table->enum('status', ['active', 'disabled'])->default('active');
             $table->timestamps();
         });
