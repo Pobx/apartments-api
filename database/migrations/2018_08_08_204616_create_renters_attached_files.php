@@ -19,7 +19,7 @@ class CreateRentersAttachedFiles extends Migration
             $table->integer('renters_id')->unsigned();
             $table->foreign('renters_id')->references('id')->on('renters');
             $table->string('attached_name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อไฟล์');
-            $table->string('attached_path', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci');
+            $table->string('attached_path', 200)->nullable(true)->default(null)->collation('utf8mb4_general_ci');
             $table->enum('status', ['active', 'disabled', 'rented_room'])->default('active');
             $table->timestamps();
         });
