@@ -16,6 +16,8 @@ class CreateUtilitiesPackageList extends Migration
         Schema::create('utilities_package_list', function (Blueprint $table)
         {
             $table->increments('id');
+            $table->integer('utilities_packages_id')->unsigned();
+            $table->integer('utility_categories_id')->unsigned();
             $table->foreign('utilities_packages_id')->references('id')->on('utilities_packages');
             $table->foreign('utility_categories_id')->references('id')->on('utility_categories');
             $table->enum('status', ['active', 'disabled'])->default('active');
