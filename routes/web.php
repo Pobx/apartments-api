@@ -22,6 +22,7 @@ $router->get('/key', function ()
 });
 
 $router->post('room-categories/create', 'RoomCategoriesController@create');
+$router->put('room-categories/update', 'RoomCategoriesController@update');
 
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
