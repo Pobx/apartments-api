@@ -13,8 +13,8 @@ class RoomCategoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('room_categories')->insert([
-            ['name' => 'รายวัน', 'status' => 'active'],
-            ['name' => 'รายเดือน', 'status' => 'active'],
+            ['name' => 'รายวัน', 'status' => 'active', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['name' => 'รายเดือน', 'status' => 'active', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
         ]);
     }
 }
