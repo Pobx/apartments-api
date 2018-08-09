@@ -20,3 +20,10 @@ $router->get('/key', function ()
 {
     return str_random(32);
 });
+
+$router->post('room-categories/create', 'RoomCategoriesController@create');
+
+// $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
+// {
+//     $router->post('room-categories/store', 'RoomCategoriesController@store');
+// });
