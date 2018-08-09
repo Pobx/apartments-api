@@ -44,5 +44,6 @@ class RoomCategoriesController extends Controller
 
         return response()->json($inputs, 200);
     }
+
     //
 }
