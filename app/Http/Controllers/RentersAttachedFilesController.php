@@ -45,12 +45,11 @@ class RentersAttachedFilesController extends Controller
         return response()->json($result->id, 201);
     }
 
-    public function update(Request $request)
+    public function remove_attached_file(Request $request)
     {
         $this->validateRenters($request);
 
         $inputs = $request->all();
-        $inputs['attached_name'] = $this->setFile($request);
         RentersAttachedFiles::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
