@@ -21,8 +21,8 @@ class RoomsController extends Controller
     {
         $this->validate($request, [
             'name'                  => 'required',
-            'apartments_id'         => 'required',
-            'room_categories_id'    => 'required',
+            'apartments_id'         => 'nullable',
+            'room_categories_id'    => 'nullable',
             'price'                 => 'required',
             'status'                => 'required',
             'utilities_packages_id' => 'nullable',
