@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Renters;
 use Illuminate\Http\Request;
 
-class RentersController extends Controller
+class RentersAttachedFilesController extends Controller
 {
     /**
      * Create a new controller instance.
