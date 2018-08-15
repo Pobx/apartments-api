@@ -38,7 +38,7 @@ class RentersController extends Controller
         $this->validateRenters($request);
 
         $inputs = $request->all();
-        $inputs['attached_file_image'] = $this->setFile($request);
+        $inputs['attached_name'] = $this->setFile($request);
         $result = Renters::create($inputs);
 
         return response()->json($result->id, 201);
@@ -49,7 +49,7 @@ class RentersController extends Controller
         $this->validateRenters($request);
 
         $inputs = $request->all();
-        $inputs['attached_file_image'] = $this->setFile($request);
+        $inputs['attached_name'] = $this->setFile($request);
         Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
