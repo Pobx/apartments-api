@@ -34,7 +34,6 @@ class RentersController extends Controller
                 'required',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
-            // 'email'         => 'nullable|email|unique:renters',
             'email'         => [
                 'nullable|email',
                 Rule::unique('renters')->ignore($request->input('id')),
