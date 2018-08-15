@@ -31,7 +31,7 @@ $router->post('renters/create', 'RentersController@create');
 $router->put('renters/update', 'RentersController@update');
 
 $router->post('renters-attached-files/create', 'RentersAttachedFilesController@create');
-$router->post('renters-attached-files/remove-attached-file', 'RentersAttachedFilesController@remove_attached_file');
+$router->put('renters-attached-files/remove-attached-file', 'RentersAttachedFilesController@remove_attached_file');
 
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
