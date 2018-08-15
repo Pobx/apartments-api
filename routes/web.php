@@ -24,6 +24,9 @@ $router->get('/key', function ()
 $router->post('room-categories/create', 'RoomCategoriesController@create');
 $router->put('room-categories/update', 'RoomCategoriesController@update');
 
+$router->post('apartments/create', 'ApartmentsController@create');
+$router->put('apartments/update', 'ApartmentsController@update');
+
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');
