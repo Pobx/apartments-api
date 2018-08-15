@@ -25,7 +25,7 @@ class RoomsController extends Controller
             'room_categories_id'    => 'required',
             'price'                 => 'required',
             'status'                => 'required',
-            'utilities_packages_id' => 'required',
+            'utilities_packages_id' => 'nullable',
             'renters_id'            => 'nullable',
         ]);
 
