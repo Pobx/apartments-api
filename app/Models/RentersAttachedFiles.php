@@ -10,7 +10,6 @@ class RentersAttachedFiles extends Model
     protected $fillable = [
         'renters_id',
         'attached_name',
-        'attached_path',
         'status',
     ];
 }
