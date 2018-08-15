@@ -43,13 +43,18 @@ class RentersController extends Controller
 
     }
 
+    private function setFile($request)
+    {
+        $upload = new UploadController;
+        return $upload->uploadFile($request);
+    }
+
     public function create(Request $request)
     {
         $this->validateRenters($request);
-        $upload = new UploadController;
 
         $inputs = $request->all();
-        $inputs['attached_file_image'] = $upload->uploadFile($request);
+        $inputs['attached_file_image'] = $this->setFile($request);
         $result = Renters::create($inputs);
 
         return response()->json($result->id, 201);
@@ -60,6 +65,7 @@ class RentersController extends Controller
         $this->validateRenters($request);
 
         $inputs = $request->all();
+        $inputs['attached_file_image'] = $this->setFile($request);
         Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
