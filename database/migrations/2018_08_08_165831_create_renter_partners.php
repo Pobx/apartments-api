@@ -21,6 +21,7 @@ class CreateRenterPartners extends Migration
             $table->string('first_name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อ');
             $table->string('last_name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('สกุล');
             $table->string('mobile', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('เบอร์มือถือ');
+            $table->enum('status', ['active', 'disabled'])->default('active');
             $table->timestamps();
         });
     }
