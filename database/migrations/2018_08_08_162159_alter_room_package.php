@@ -15,7 +15,7 @@ class AlterRoomPackage extends Migration
     {
         Schema::table('rooms', function (Blueprint $table)
         {
-            $table->integer('utilities_packages_id')->unsigned();
+            $table->integer('utilities_packages_id')->nullable(true)->unsigned();
             $table->foreign('utilities_packages_id')->references('id')->on('utilities_packages');
         });
     }

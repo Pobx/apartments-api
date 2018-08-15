@@ -15,7 +15,7 @@ class AlterRentersToRooms extends Migration
     {
         Schema::table('rooms', function (Blueprint $table)
         {
-            $table->integer('renters_id')->unsigned();
+            $table->integer('renters_id')->nullable(true)->unsigned();
             $table->foreign('renters_id')->references('id')->on('renters');
         });
     }
