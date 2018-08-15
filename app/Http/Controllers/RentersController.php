@@ -33,26 +33,16 @@ class RentersController extends Controller
 
     public function create(Request $request)
     {
-        $this->validateRenters();
-        return 'OK';
-        // $inputs = $request->all();
-        // $result = Renters::create($inputs);
+        $this->validateRenters($request);
+        $inputs = $request->all();
+        $result = Renters::create($inputs);
 
-        // return response()->json($result->id, 201);
+        return response()->json($result->id, 201);
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'id'            => 'required',
-            'last_name'     => 'required',
-            'id_card'       => 'required|unique:renters|max:13',
-            'date_of_birth' => 'required',
-            'address'       => 'required',
-            'mobile'        => 'required|unique:renters',
-            'email'         => 'nullable|email|unique:renters',
-            'status'        => 'required',
-        ]);
+        $this->validateRenters($request);
 
         $inputs = $request->all();
         Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
