@@ -27,6 +27,9 @@ $router->put('room-categories/update', 'RoomCategoriesController@update');
 $router->post('apartments/create', 'ApartmentsController@create');
 $router->put('apartments/update', 'ApartmentsController@update');
 
+$router->post('renters/create', 'RentersController@create');
+$router->put('renters/update', 'RentersController@update');
+
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');

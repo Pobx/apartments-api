@@ -17,7 +17,7 @@ class RentersController extends Controller
         //
     }
 
-    public function create(Request $request)
+    private function validateRenters($request)
     {
         $this->validate($request, [
             'first_name'    => 'required',
@@ -29,11 +29,16 @@ class RentersController extends Controller
             'email'         => 'nullable|email|unique:renters',
             'status'        => 'required',
         ]);
+    }
 
-        $inputs = $request->all();
-        $result = Renters::create($inputs);
+    public function create(Request $request)
+    {
+        $this->validateRenters();
+        return 'OK';
+        // $inputs = $request->all();
+        // $result = Renters::create($inputs);
 
-        return response()->json($result->id, 201);
+        // return response()->json($result->id, 201);
     }
 
     public function update(Request $request)
