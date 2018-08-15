@@ -23,7 +23,7 @@ class RenterPartnersController extends Controller
             'renters_id' => 'required',
             'first_name' => 'required',
             'last_name'  => 'required',
-            'mobile'     => 'required',
+            'mobile'     => 'required|max:10',
         ]);
 
     }

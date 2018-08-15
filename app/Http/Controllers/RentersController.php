@@ -32,6 +32,7 @@ class RentersController extends Controller
             'address'       => 'required',
             'mobile'        => [
                 'required',
+                'max:10',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
             'email'         => [
