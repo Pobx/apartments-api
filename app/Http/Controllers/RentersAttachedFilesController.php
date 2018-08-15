@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Renters;
+use App\Models\RentersAttachedFiles;
 use Illuminate\Http\Request;
 
 class RentersAttachedFilesController extends Controller
@@ -40,7 +40,7 @@ class RentersAttachedFilesController extends Controller
 
         $inputs = $request->all();
         $inputs['attached_name'] = $this->setFile($request);
-        $result = Renters::create($inputs);
+        $result = RentersAttachedFiles::create($inputs);
 
         return response()->json($result->id, 201);
     }
@@ -51,7 +51,7 @@ class RentersAttachedFilesController extends Controller
 
         $inputs = $request->all();
         $inputs['attached_name'] = $this->setFile($request);
-        Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
+        RentersAttachedFiles::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
     }
