@@ -21,7 +21,7 @@ class CreateRooms extends Migration
             $table->integer('room_categories_id')->unsigned();
             $table->foreign('apartments_id')->references('id')->on('apartments');
             $table->foreign('room_categories_id')->references('id')->on('room_categories');
-            $table->float('price', 8, 2)->comment('ราคาห้องพัก');
+            $table->float('price', 10, 2)->comment('ราคาห้องพัก');
             $table->enum('status', ['active', 'disabled', 'rented_room'])->default('active');
             $table->timestamps();
         });
