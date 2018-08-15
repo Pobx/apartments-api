@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Renters;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RentersController extends Controller
 {
@@ -22,13 +23,24 @@ class RentersController extends Controller
         $this->validate($request, [
             'first_name'    => 'required',
             'last_name'     => 'required',
-            'id_card'       => 'required|unique:renters|max:13',
+            'id_card'       => [
+                'required|unique:renters|max:13',
+                Rule::unique('renters')->ignore($request->input('id')),
+            ],
             'date_of_birth' => 'required',
             'address'       => 'required',
-            'mobile'        => 'required|unique:renters',
-            'email'         => 'nullable|email|unique:renters',
+            'mobile'        => [
+                'required|unique:renters',
+                Rule::unique('renters')->ignore($request->input('id')),
+            ],
+            // 'email'         => 'nullable|email|unique:renters',
+            'email'         => [
+                'nullable|email',
+                Rule::unique('renters')->ignore($request->input('id')),
+            ],
             'status'        => 'required',
         ]);
+
     }
 
     public function create(Request $request)
