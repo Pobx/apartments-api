@@ -38,7 +38,7 @@ class RenterPartnersController extends Controller
         return response()->json($result->id, 201);
     }
 
-    public function remove_attached_file(Request $request)
+    public function remove_partner(Request $request)
     {
         $this->validateRentersPartners($request);
 

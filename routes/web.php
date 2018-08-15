@@ -33,6 +33,8 @@ $router->put('renters/update', 'RentersController@update');
 $router->post('renters-attached-files/create', 'RentersAttachedFilesController@create');
 $router->put('renters-attached-files/remove-attached-file', 'RentersAttachedFilesController@remove_attached_file');
 
+$router->post('renters-partners/create', 'RenterPartnersController@create');
+// $router->put('renters-partners/remove_partner', 'RenterPartnersController@remove_partner');
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');
