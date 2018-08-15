@@ -4,3 +4,4 @@ Homestead.json
 Homestead.yaml
 .env
 /public/images
+/public/attached_files
