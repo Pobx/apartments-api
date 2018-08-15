@@ -22,10 +22,11 @@ class RentersController extends Controller
         $this->validate($request, [
             'first_name'    => 'required',
             'last_name'     => 'required',
-            'id_card'       => 'required',
+            'id_card'       => 'required|unique:renters|max:13',
             'date_of_birth' => 'required',
             'address'       => 'required',
-            'mobile'        => 'required',
+            'mobile'        => 'required|unique:renters',
+            'email'         => 'nullable|email|unique:renters',
             'status'        => 'required',
         ]);
 
@@ -40,10 +41,11 @@ class RentersController extends Controller
         $this->validate($request, [
             'id'            => 'required',
             'last_name'     => 'required',
-            'id_card'       => 'required',
+            'id_card'       => 'required|unique:renters|max:13',
             'date_of_birth' => 'required',
             'address'       => 'required',
-            'mobile'        => 'required',
+            'mobile'        => 'required|unique:renters',
+            'email'         => 'nullable|email|unique:renters',
             'status'        => 'required',
         ]);
 
