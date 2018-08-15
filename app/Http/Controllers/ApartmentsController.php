@@ -25,9 +25,9 @@ class ApartmentsController extends Controller
         ]);
 
         $inputs = $request->all();
-        $room_categories = Apartments::create($inputs);
+        $result = Apartments::create($inputs);
 
-        return response()->json($room_categories->id, 201);
+        return response()->json($result->id, 201);
     }
 
     public function update(Request $request)

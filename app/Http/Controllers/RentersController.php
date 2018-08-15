@@ -30,9 +30,9 @@ class RentersController extends Controller
         ]);
 
         $inputs = $request->all();
-        $room_categories = Renters::create($inputs);
+        $result = Renters::create($inputs);
 
-        return response()->json($room_categories->id, 201);
+        return response()->json($result->id, 201);
     }
 
     public function update(Request $request)
