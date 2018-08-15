@@ -16,7 +16,7 @@ class CreateUtilitiesPackages extends Migration
         Schema::create('utilities_packages', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อ ประเภทห้อง');
+            $table->string('name', 100)->nullable(true)->default(null)->collation('utf8mb4_general_ci')->comment('ชื่อ package');
             $table->enum('status', ['active', 'disabled'])->default('active');
             $table->timestamps();
         });
