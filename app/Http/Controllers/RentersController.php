@@ -45,11 +45,14 @@ class RentersController extends Controller
 
     public function create(Request $request)
     {
-        $this->validateRenters($request);
-        $inputs = $request->all();
-        $result = Renters::create($inputs);
+        $upload = new UploadController;
+        $image = $upload->uploadFile($request);
+        return $image;
+        // $this->validateRenters($request);
+        // $inputs = $request->all();
+        // $result = Renters::create($inputs);
 
-        return response()->json($result->id, 201);
+        // return response()->json($result->id, 201);
     }
 
     public function update(Request $request)

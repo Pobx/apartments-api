@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-class RoomCategoriesController extends Controller
+class UploadController extends Controller
 {
-    public function setImage($request, $path)
+    public function uploadFile($request, $path = '')
     {
+
         // $link_name = 'default.png';
         $inputs = $request->all();
-        $link_name = ($inputs['old_image'] == '0' ? 'default.png' : $inputs['old_image']);
+        $path = ($path == '' ? $_SERVER['DOCUMENT_ROOT'] . '/images' : $path);
+        $link_name = (!isset($inputs['old_file']) || $inputs['old_file'] == null ? null : $inputs['old_file']);
 
-        if ($request->hasFile('image'))
+        if ($request->hasFile('new_file'))
         {
-            $image = $request->file('image');
+            $image = $request->file('new_file');
             $origin_name = $image->getClientOriginalName();
             $link_name = date('YmdHis') . '_' . uniqid() . '_' . $origin_name;
 
