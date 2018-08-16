@@ -18,7 +18,7 @@ class UtilityCategoriesController extends Controller
     }
 
     private $validate = [
-        'status'              => 'required|string',
+        'name'                => 'required|string',
         'price_per_unit_cost' => 'required|numeric',
         'price_per_unit'      => 'required|numeric',
         'unit_min_rate'       => 'required|numeric',
