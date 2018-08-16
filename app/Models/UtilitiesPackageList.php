@@ -8,7 +8,9 @@ class UtilitiesPackageList extends Model
     protected $table = 'utilities_package_list';
 
     protected $fillable = [
-        'name',
+        'id',
+        'utilities_packages_id',
+        'utility_categories_id',
         'status',
     ];
 }
