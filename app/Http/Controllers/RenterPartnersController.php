@@ -17,21 +17,17 @@ class RenterPartnersController extends Controller
         //
     }
 
-    private function validateRentersPartners($request)
-    {
-        $this->validate($request, [
-            'renters_id' => 'required',
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'mobile'     => 'required|max:10',
-            'status'     => 'required',
-        ]);
-
-    }
+    private $validate = [
+        'renters_id' => 'required|numeric',
+        'first_name' => 'required|string',
+        'last_name'  => 'required|string',
+        'mobile'     => 'required|numeric|max:10',
+        'status'     => 'required',
+    ];
 
     public function create(Request $request)
     {
-        $this->validateRentersPartners($request);
+        $this->validate($request, $this->validate);
 
         $inputs = $request->all();
         $result = RenterPartners::create($inputs);
@@ -41,7 +37,7 @@ class RenterPartnersController extends Controller
 
     public function remove_partner(Request $request)
     {
-        $this->validateRentersPartners($request);
+        $this->validate($request, $this->validate);
 
         $inputs = $request->all();
         RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
