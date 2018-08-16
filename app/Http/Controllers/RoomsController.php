@@ -17,19 +17,26 @@ class RoomsController extends Controller
         //
     }
 
-    private $validate = [
-        'name'                  => 'required',
-        'apartments_id'         => 'nullable|numeric',
-        'room_categories_id'    => 'nullable|numeric',
-        'price'                 => 'required|numeric',
-        'status'                => 'required',
-        'utilities_packages_id' => 'nullable|numeric',
-        'renters_id'            => 'nullable|numeric',
-    ];
+    private function RuleValidate($request)
+    {
+        $this->validate($request, [
+            'name'                  => 'required',
+            'apartments_id'         => 'nullable|numeric',
+            'room_categories_id'    => 'nullable|numeric',
+            'price'                 => 'required|numeric',
+            'status'                => 'required',
+            'utilities_packages_id' => 'nullable|numeric',
+            'renters_id'            => 'nullable|numeric',
+            'status'                => [
+                'required',
+                Rule::in(['active', 'disabled', 'rented_room']),
+            ],
+        ]);
+    }
 
     public function create(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
         $inputs = $request->all();
         $result = Rooms::create($inputs);
 
@@ -38,7 +45,7 @@ class RoomsController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         Rooms::updateOrCreate(['id' => $inputs['id']], $inputs);
