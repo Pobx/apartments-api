@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rooms;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoomsController extends Controller
 {

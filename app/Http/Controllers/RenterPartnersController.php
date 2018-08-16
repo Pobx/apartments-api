@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RenterPartners;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RenterPartnersController extends Controller
 {

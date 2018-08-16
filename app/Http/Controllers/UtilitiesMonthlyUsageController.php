@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UtilitiesMonthlyUsage;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UtilitiesMonthlyUsageController extends Controller
 {
@@ -17,17 +18,23 @@ class UtilitiesMonthlyUsageController extends Controller
         //
     }
 
-    private $validate = [
-        'room_id'               => 'nullable|numeric',
-        'utility_categories_id' => 'nullable|numeric',
-        'utility_memo_date'     => 'required|date',
-        'unit_amount'           => 'required|numeric',
-        'status'                => 'required',
-    ];
+    private function RuleValidate($request)
+    {
+        $this->validate($request, [
+            'room_id'               => 'nullable|numeric',
+            'utility_categories_id' => 'nullable|numeric',
+            'utility_memo_date'     => 'required|date',
+            'unit_amount'           => 'required|numeric',
+            'status'                => [
+                'required',
+                Rule::in(['active', 'disabled']),
+            ],
+        ]);
+    }
 
     public function create(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         $result = UtilitiesMonthlyUsage::create($inputs);
@@ -37,7 +44,7 @@ class UtilitiesMonthlyUsageController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         UtilitiesMonthlyUsage::updateOrCreate(['id' => $inputs['id']], $inputs);
