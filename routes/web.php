@@ -39,6 +39,9 @@ $router->put('renters-partners/remove-partner', 'RenterPartnersController@remove
 $router->post('rooms/create', 'RoomsController@create');
 $router->put('rooms/update', 'RoomsController@update');
 
+$router->post('utilities-monthly-usage/create', 'UtilitiesMonthlyUsageController@create');
+$router->put('utilities-monthly-usage/update', 'UtilitiesMonthlyUsageController@update');
+
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');
