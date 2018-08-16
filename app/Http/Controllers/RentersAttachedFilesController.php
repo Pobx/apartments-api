@@ -17,15 +17,11 @@ class RentersAttachedFilesController extends Controller
         //
     }
 
-    private function validateRenters($request)
-    {
-        $this->validate($request, [
-            'renters_id'    => 'required',
-            'attached_name' => 'required',
-            'status'        => 'required',
-        ]);
-
-    }
+    private $validate = [
+        'renters_id'    => 'required|numeric',
+        'attached_name' => 'required',
+        'status'        => 'required',
+    ];
 
     private function setFile($request)
     {
@@ -36,7 +32,7 @@ class RentersAttachedFilesController extends Controller
 
     public function create(Request $request)
     {
-        $this->validateRenters($request);
+        $this->validate($request, $this->validate);
 
         $inputs = $request->all();
         $inputs['attached_name'] = $this->setFile($request);
@@ -47,7 +43,7 @@ class RentersAttachedFilesController extends Controller
 
     public function remove_attached_file(Request $request)
     {
-        $this->validateRenters($request);
+        $this->validate($request);
 
         $inputs = $request->all();
         RentersAttachedFiles::updateOrCreate(['id' => $inputs['id']], $inputs);
