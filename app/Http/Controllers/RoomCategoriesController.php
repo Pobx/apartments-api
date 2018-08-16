@@ -17,12 +17,14 @@ class RoomCategoriesController extends Controller
         //
     }
 
+    private $validate = [
+        'name'   => 'required|string',
+        'status' => 'required',
+    ];
+
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'name'   => 'required',
-            'status' => 'required',
-        ]);
+        $this->validate($request, $this->validate);
 
         $inputs = $request->all();
         $result = RoomCategories::create($inputs);
@@ -32,11 +34,7 @@ class RoomCategoriesController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'id'     => 'required',
-            'name'   => 'required',
-            'status' => 'required',
-        ]);
+        $this->validate($request, $this->validate);
 
         $inputs = $request->all();
         RoomCategories::updateOrCreate(['id' => $inputs['id']], $inputs);
