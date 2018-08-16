@@ -18,30 +18,15 @@ class UtilitiesMonthlyUsageController extends Controller
     }
 
     private $validate = [
-        'name'                  => 'required',
         'room_id'               => 'nullable',
         'utility_categories_id' => 'nullable',
-        'utility_memo_date'     => 'required',
-        'unit_amount'           => 'required',
+        'utility_memo_date'     => 'required|date',
+        'unit_amount'           => 'required|numeric',
         'status'                => 'required',
     ];
 
-    private function validateUtilitiesMonthlyUsageController($request)
-    {
-        $this->validate($request, [
-            'name'                  => 'required',
-            'room_id'               => 'nullable',
-            'utility_categories_id' => 'nullable',
-            'utility_memo_date'     => 'required',
-            'unit_amount'           => 'required',
-            'status'                => 'required',
-        ]);
-
-    }
-
     public function create(Request $request)
     {
-        // $this->validateUtilitiesMonthlyUsageController($request);
         $this->validate($request, $this->validate);
 
         $inputs = $request->all();
@@ -52,7 +37,6 @@ class UtilitiesMonthlyUsageController extends Controller
 
     public function update(Request $request)
     {
-        // $this->validateUtilitiesMonthlyUsageController($request);
         $this->validate($request, $this->validate);
 
         $inputs = $request->all();

@@ -16,8 +16,8 @@ class CreateUtilitiesMonthlyUsage extends Migration
         Schema::create('utilities_monthly_usage', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('room_id')->unsigned();
-            $table->integer('utility_categories_id')->unsigned();
+            $table->integer('room_id')->nullable(true)->default(null)->unsigned();
+            $table->integer('utility_categories_id')->nullable(true)->default(null)->unsigned();
             $table->foreign('utility_categories_id')->references('id')->on('utility_categories');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->dateTime('utility_memo_date')->comment('วันที่บันทึกจาก User');
