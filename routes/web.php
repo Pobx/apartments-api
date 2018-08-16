@@ -42,6 +42,9 @@ $router->put('rooms/update', 'RoomsController@update');
 $router->post('utilities-monthly-usage/create', 'UtilitiesMonthlyUsageController@create');
 $router->put('utilities-monthly-usage/update', 'UtilitiesMonthlyUsageController@update');
 
+$router->post('utilities-packages/create', 'UtilitiesPackagesController@create');
+$router->put('utilities-packages/update', 'UtilitiesPackagesController@update');
+
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');
