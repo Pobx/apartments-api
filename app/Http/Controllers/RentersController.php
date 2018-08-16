@@ -25,13 +25,15 @@ class RentersController extends Controller
             'last_name'     => 'required',
             'id_card'       => [
                 'required',
+                'numeric',
                 'max:13',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
-            'date_of_birth' => 'required',
+            'date_of_birth' => 'required|date',
             'address'       => 'required',
             'mobile'        => [
                 'required',
+                'numeric',
                 'max:10',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
