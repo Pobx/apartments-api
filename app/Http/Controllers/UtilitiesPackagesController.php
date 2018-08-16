@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UtilitiesPackages;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UtilitiesPackagesController extends Controller
 {
@@ -17,14 +18,20 @@ class UtilitiesPackagesController extends Controller
         //
     }
 
-    private $validate = [
-        'name'   => 'required|string',
-        'status' => 'required',
-    ];
+    private function RuleValidate($request)
+    {
+        $this->validate($request, [
+            'name'   => 'required|string',
+            'status' => [
+                'required',
+                Rule::in(['active', 'disabled']),
+            ],
+        ]);
+    }
 
     public function create(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         $result = UtilitiesPackages::create($inputs);
@@ -34,7 +41,7 @@ class UtilitiesPackagesController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         UtilitiesPackages::updateOrCreate(['id' => $inputs['id']], $inputs);
