@@ -18,8 +18,8 @@ class UtilitiesMonthlyUsageController extends Controller
     }
 
     private $validate = [
-        'room_id'               => 'nullable',
-        'utility_categories_id' => 'nullable',
+        'room_id'               => 'nullable|numeric',
+        'utility_categories_id' => 'nullable|numeric',
         'utility_memo_date'     => 'required|date',
         'unit_amount'           => 'required|numeric',
         'status'                => 'required',

@@ -7,7 +7,6 @@ class UploadController extends Controller
     public function uploadFile($request, $path = '')
     {
 
-        // $link_name = 'default.png';
         $inputs = $request->all();
         $path = ($path == '' ? $_SERVER['DOCUMENT_ROOT'] . '/images' : $path);
         $link_name = (!isset($inputs['old_file']) || $inputs['old_file'] == null ? null : $inputs['old_file']);
