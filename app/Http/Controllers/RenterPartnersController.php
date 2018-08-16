@@ -24,7 +24,10 @@ class RenterPartnersController extends Controller
             'first_name' => 'required|string|max:200',
             'last_name'  => 'required|string|max:200',
             'mobile'     => 'required|numeric|max:10',
-            'status'     => Rule::in(['active', 'disabled']),
+            'status'     => [
+                'required',
+                Rule::in(['active', 'disabled']),
+            ],
         ]);
     }
 
