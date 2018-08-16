@@ -18,7 +18,7 @@ class RentersController extends Controller
         //
     }
 
-    private function validateRenters($request)
+    private function RuleValidate($request)
     {
         $this->validate($request, [
             'first_name'    => 'required',
@@ -54,7 +54,7 @@ class RentersController extends Controller
 
     public function create(Request $request)
     {
-        $this->validateRenters($request);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         $inputs['attached_file_image'] = $this->setFile($request);
@@ -65,7 +65,7 @@ class RentersController extends Controller
 
     public function update(Request $request)
     {
-        $this->validateRenters($request);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         $inputs['attached_file_image'] = $this->setFile($request);
