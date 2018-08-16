@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartments;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ApartmentsController extends Controller
 {
@@ -17,14 +18,17 @@ class ApartmentsController extends Controller
         //
     }
 
-    private $validate = [
-        'name'   => 'required',
-        'status' => 'required',
-    ];
+    private function RuleValidate($request)
+    {
+        $this->validate($request, [
+            'name'   => 'required',
+            'status' => Rule::in(['new_apartment', 'active_apartment', 'disabled_apartment', 'maintennace_apartment']),
+        ]);
+    }
 
     public function create(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         $result = Apartments::create($inputs);
@@ -34,7 +38,7 @@ class ApartmentsController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, $this->validate);
+        $this->RuleValidate($request);
 
         $inputs = $request->all();
         Apartments::updateOrCreate(['id' => $inputs['id']], $inputs);
