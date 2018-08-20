@@ -33,7 +33,7 @@ class ApartmentsTest extends TestCase
         $parameters = [
             'id'     => 1,
             'name'   => 'หอพัก Testers',
-            'status' => 'disabled_apartment',
+            'status' => 'active_apartment',
         ];
 
         $this->put('apartments/update', $parameters, []);
