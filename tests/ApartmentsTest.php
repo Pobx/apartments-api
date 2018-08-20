@@ -24,6 +24,10 @@ class ApartmentsTest extends TestCase
         $this->seeJsonStructure($this->outPutStoreData);
     }
 
+    /**
+     * @depends testShouldCreateApartment
+     */
+
     public function testShouldUpdateApartment()
     {
         $parameters = [
