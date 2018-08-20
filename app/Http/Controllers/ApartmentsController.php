@@ -32,8 +32,9 @@ class ApartmentsController extends Controller
 
         $inputs = $request->all();
         $result = Apartments::create($inputs);
+        $inputs['id'] = $result->id;
 
-        return response()->json($result->id, 201);
+        return response()->json($inputs, 201);
     }
 
     public function update(Request $request)
