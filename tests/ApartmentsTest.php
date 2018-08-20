@@ -2,6 +2,12 @@
 
 class ApartmentsTest extends TestCase
 {
+    private $outPutStoreData = [
+        'id',
+        'name',
+        'status',
+    ];
+
     /**
      * /apartments/create
      */
@@ -15,10 +21,19 @@ class ApartmentsTest extends TestCase
 
         $this->post('apartments/create', $parameters, []);
         $this->seeStatusCode(201);
-        $this->seeJsonStructure([
-            'id',
-            'name',
-            'status',
-        ]);
+        $this->seeJsonStructure($this->outPutStoreData);
+    }
+
+    public function testShouldUpdateApartment()
+    {
+        $parameters = [
+            'id'     => 1,
+            'name'   => 'หอพัก Testers',
+            'status' => 'disabled_apartment',
+        ];
+
+        $this->put('apartments/update', $parameters, []);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure($this->outPutStoreData);
     }
 }
