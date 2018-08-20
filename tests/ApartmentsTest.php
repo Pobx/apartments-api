@@ -19,7 +19,6 @@ class ApartmentsTest extends TestCase
 
     public function testShouldCreateApartment()
     {
-
         $this->post('apartments/create', $this->parameters, []);
         $this->seeStatusCode(201);
         $this->seeJsonStructure($this->outPutStoreData);
