@@ -8,35 +8,34 @@ class ApartmentsTest extends TestCase
         'status',
     ];
 
+    private $parameters = [
+        'name'   => 'หอพัก Testers',
+        'status' => 'new_apartment',
+    ];
+
     /**
      * /apartments/create
      */
 
     public function testShouldCreateApartment()
     {
-        $parameters = [
-            'name'   => 'หอพัก Testers',
-            'status' => 'new_apartment',
-        ];
 
-        $this->post('apartments/create', $parameters, []);
+        $this->post('apartments/create', $this->parameters, []);
         $this->seeStatusCode(201);
         $this->seeJsonStructure($this->outPutStoreData);
     }
 
     /**
      * @depends testShouldCreateApartment
+     * /apartments/update
      */
 
     public function testShouldUpdateApartment()
     {
-        $parameters = [
-            'id'     => 1,
-            'name'   => 'หอพัก Testers',
-            'status' => 'active_apartment',
-        ];
+        $this->parameters['id'] = 1;
+        $this->parameters['status'] = 'active_apartment';
 
-        $this->put('apartments/update', $parameters, []);
+        $this->put('apartments/update', $this->parameters, []);
         $this->seeStatusCode(200);
         $this->seeJsonStructure($this->outPutStoreData);
     }
