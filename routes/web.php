@@ -24,6 +24,7 @@ $router->get('/key', function ()
 $router->post('room-categories/create', 'RoomCategoriesController@create');
 $router->put('room-categories/update', 'RoomCategoriesController@update');
 
+$router->get('apartments', 'ApartmentsController@index');
 $router->post('apartments/create', 'ApartmentsController@create');
 $router->put('apartments/update', 'ApartmentsController@update');
 

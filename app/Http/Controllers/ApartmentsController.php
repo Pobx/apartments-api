@@ -18,6 +18,11 @@ class ApartmentsController extends Controller
         //
     }
 
+    public function index() {
+      $results = Apartments::all();
+      return response()->json($results, 200);
+    }
+
     private function RuleValidate($request)
     {
         $this->validate($request, [
