@@ -21,13 +21,16 @@ catch (Dotenv\Exception\InvalidPathException $e)
 |
  */
 
+
 $app = new Laravel\Lumen\Application(
-    realpath(__DIR__ . '/../')
+  realpath(__DIR__ . '/../')
 );
 
 $app->withFacades();
 
 $app->withEloquent();
+
+$app->configure('cors');
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +64,10 @@ $app->singleton(
 |
  */
 
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+  //  App\Http\Middleware\ExampleMiddleware::class
+  \Barryvdh\Cors\HandleCors::class
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
@@ -80,6 +84,7 @@ $app->singleton(
 |
  */
 
+$app->register(Barryvdh\Cors\ServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
