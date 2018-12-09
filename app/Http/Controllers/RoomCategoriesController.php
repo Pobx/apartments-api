@@ -29,6 +29,11 @@ class RoomCategoriesController extends Controller
         ]);
     }
 
+    public function index() {
+      $results = RoomCategories::all();
+      return response()->json($results, 200);
+    }
+
     public function create(Request $request)
     {
         $$this->RuleValidate($request);
