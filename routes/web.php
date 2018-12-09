@@ -21,6 +21,7 @@ $router->get('/key', function ()
     return str_random(32);
 });
 
+$router->get('room-categories', 'RoomCategoriesController@index');
 $router->post('room-categories/create', 'RoomCategoriesController@create');
 $router->put('room-categories/update', 'RoomCategoriesController@update');
 
