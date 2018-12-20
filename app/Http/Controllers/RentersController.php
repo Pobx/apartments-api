@@ -25,7 +25,7 @@ class RentersController extends Controller
             'last_name'     => 'required',
             'id_card'       => [
                 'required',
-                'numeric',
+                'alpha_num',
                 'max:13',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
@@ -33,7 +33,7 @@ class RentersController extends Controller
             'address'       => 'required',
             'mobile'        => [
                 'required',
-                'numeric',
+                'alpha_num',
                 'max:10',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
@@ -49,7 +49,8 @@ class RentersController extends Controller
     private function setFile($request)
     {
         $upload = new UploadController;
-        return $upload->uploadFile($request);
+        $path = $_SERVER['DOCUMENT_ROOT'].'/public/images';
+        return $upload->uploadFile($request, $path);
     }
 
     public function create(Request $request)
@@ -60,7 +61,7 @@ class RentersController extends Controller
         $inputs['attached_file_image'] = $this->setFile($request);
         $result = Renters::create($inputs);
 
-        return response()->json($result->id, 201);
+        return response()->json($result, 201);
     }
 
     public function update(Request $request)
