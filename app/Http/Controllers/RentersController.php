@@ -18,6 +18,12 @@ class RentersController extends Controller
         //
     }
 
+    public function index() 
+    {
+      $results = Renters::all();
+      return response()->json($results, 200);
+    }
+
     private function RuleValidate($request)
     {
         $this->validate($request, [
