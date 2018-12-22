@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class RentersController extends Controller
 {
+    //
+
     /**
      * Create a new controller instance.
      *
@@ -18,10 +20,33 @@ class RentersController extends Controller
         //
     }
 
-    public function index() 
+    public function create(Request $request)
     {
-      $results = Renters::all();
-      return response()->json($results, 200);
+        $this->RuleValidate($request);
+
+        $inputs                        = $request->all();
+        $inputs['attached_file_image'] = $this->setFile($request);
+        $result                        = Renters::create($inputs);
+
+        return response()->json($result, 201);
+    }
+
+    public function index()
+    {
+        $results = Renters::all();
+
+        return response()->json($results, 200);
+    }
+
+    public function update(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs                        = $request->all();
+        $inputs['attached_file_image'] = $this->setFile($request);
+        Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
     }
 
     private function RuleValidate($request)
@@ -55,31 +80,8 @@ class RentersController extends Controller
     private function setFile($request)
     {
         $upload = new UploadController;
-        $path = $_SERVER['DOCUMENT_ROOT'].'/public/images';
+        $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
+
         return $upload->uploadFile($request, $path);
     }
-
-    public function create(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        $inputs['attached_file_image'] = $this->setFile($request);
-        $result = Renters::create($inputs);
-
-        return response()->json($result, 201);
-    }
-
-    public function update(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        $inputs['attached_file_image'] = $this->setFile($request);
-        Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
-
-        return response()->json($inputs, 200);
-    }
-
-    //
 }

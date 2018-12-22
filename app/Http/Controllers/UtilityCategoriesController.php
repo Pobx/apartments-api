@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class UtilityCategoriesController extends Controller
 {
+    //
+
     /**
      * Create a new controller instance.
      *
@@ -16,6 +18,33 @@ class UtilityCategoriesController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function create(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        $result = UtilityCategories::create($inputs);
+
+        return response()->json($result->id, 201);
+    }
+
+    public function index()
+    {
+        $results = UtilityCategories::all();
+
+        return response()->json($results, 200);
+    }
+
+    public function update(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        UtilityCategories::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
     }
 
     private function RuleValidate($request)
@@ -36,26 +65,4 @@ class UtilityCategoriesController extends Controller
             ],
         ]);
     }
-
-    public function create(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        $result = UtilityCategories::create($inputs);
-
-        return response()->json($result->id, 201);
-    }
-
-    public function update(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        UtilityCategories::updateOrCreate(['id' => $inputs['id']], $inputs);
-
-        return response()->json($inputs, 200);
-    }
-
-    //
 }

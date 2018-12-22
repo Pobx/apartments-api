@@ -1,4 +1,15 @@
 {
-    "editor.detectIndentation": false,
-    "editor.tabSize": 2
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "phpfmt.enable_auto_align": true,
+  "phpfmt.passes": [
+    "AlignDoubleArrow",
+    "AlignEquals",
+    "AlignGroupDoubleArrow",
+    "AllmanStyleBraces",
+    "DoubleToSingleQuote",
+    "IndentTernaryConditions",
+    "NewLineBeforeReturn",
+    "OrganizeClass",
+  ]
 }

@@ -51,6 +51,7 @@ $router->put('utilities-packages/update', 'UtilitiesPackagesController@update');
 $router->post('utilities-package-list/create', 'UtilitiesPackageListController@create');
 $router->put('utilities-package-list/update', 'UtilitiesPackageListController@update');
 
+$router->get('utilities', 'UtilityCategoriesController@index');
 $router->post('utilities-categories/create', 'UtilityCategoriesController@create');
 $router->put('utilities-categories/update', 'UtilityCategoriesController@update');
 
