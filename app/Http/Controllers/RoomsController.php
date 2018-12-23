@@ -20,13 +20,6 @@ class RoomsController extends Controller
         //
     }
 
-    public function index()
-    {
-        $results = Rooms::all();
-
-        return response()->json($results, 200);
-    }
-
     public function create(Request $request)
     {
         $this->RuleValidate($request);
@@ -34,6 +27,16 @@ class RoomsController extends Controller
         $result = Rooms::create($inputs);
 
         return response()->json($result->id, 201);
+    }
+
+    public function index()
+    {
+        $results = Rooms::with([
+            'room_categories:id,name',
+            'apartments:id,name',
+        ])->get();
+
+        return response()->json($results, 200);
     }
 
     public function update(Request $request)
