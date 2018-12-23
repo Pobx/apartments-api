@@ -31,6 +31,13 @@ class RentersController extends Controller
         return response()->json($result, 201);
     }
 
+    public function find($id)
+    {
+        $results = Renters::find($id);
+
+        return response()->json($results, 200);
+    }
+
     public function index()
     {
         $results = Renters::with([
@@ -40,19 +47,15 @@ class RentersController extends Controller
         return response()->json($results, 200);
     }
 
-    public function find($id)
-    {
-      $results = Renters::find($id);
-      return response()->json($results, 200);
-    }
-
     public function update(Request $request)
     {
         $this->RuleValidate($request);
 
-        $inputs                        = $request->all();
-        $inputs['attached_file_image'] = $this->setFile($request);
-        Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
+        $inputs = $request->all();
+        // $inputs['attached_file_image'] = $this->setFile($request);
+        // Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        // return response()->json($inputs, 200);
 
         return response()->json($inputs, 200);
     }
@@ -77,7 +80,7 @@ class RentersController extends Controller
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
             'email'         => [
-                'nullable|email',
+                'nullable',
                 Rule::unique('renters')->ignore($request->input('id')),
             ],
             'status'        => 'required',
