@@ -17,4 +17,9 @@ class Renters extends Model
         'email',
         'status',
     ];
+
+    public function rooms()
+    {
+        return $this->hasOne('App\Models\Rooms', 'id', 'renters_id');
+    }
 }

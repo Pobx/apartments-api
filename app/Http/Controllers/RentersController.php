@@ -33,7 +33,9 @@ class RentersController extends Controller
 
     public function index()
     {
-        $results = Renters::all();
+        $results = Renters::with([
+            'rooms:id,name',
+        ])->get();
 
         return response()->json($results, 200);
     }
