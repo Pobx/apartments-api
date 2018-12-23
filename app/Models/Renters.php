@@ -5,7 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Renters extends Model
 {
-    protected $table    = 'renters';
     protected $fillable = [
         'first_name',
         'last_name',
@@ -17,6 +16,8 @@ class Renters extends Model
         'email',
         'status',
     ];
+
+    protected $table = 'renters';
 
     public function rooms()
     {
