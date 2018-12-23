@@ -30,6 +30,7 @@ $router->post('apartments/create', 'ApartmentsController@create');
 $router->put('apartments/update', 'ApartmentsController@update');
 
 $router->get('renters', 'RentersController@index');
+$router->get('renters-by-id/{id}', 'RentersController@find');
 $router->post('renters/create', 'RentersController@create');
 $router->put('renters/update', 'RentersController@update');
 

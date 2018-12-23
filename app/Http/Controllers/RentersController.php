@@ -40,6 +40,12 @@ class RentersController extends Controller
         return response()->json($results, 200);
     }
 
+    public function find($id)
+    {
+      $results = Renters::find($id);
+      return response()->json($results, 200);
+    }
+
     public function update(Request $request)
     {
         $this->RuleValidate($request);
