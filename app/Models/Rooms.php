@@ -19,11 +19,11 @@ class Rooms extends Model
 
     public function room_categories()
     {
-        return $this->hasOne('App\Models\RoomCategories', 'id');
+        return $this->hasOne('App\Models\RoomCategories', 'id', 'room_categories_id');
     }
 
     public function apartments()
     {
-        return $this->hasOne('App\Models\Apartments', 'id');
+        return $this->hasOne('App\Models\Apartments', 'id', 'apartments_id');
     }
 }
