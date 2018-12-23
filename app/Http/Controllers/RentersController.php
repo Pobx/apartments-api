@@ -52,10 +52,8 @@ class RentersController extends Controller
         $this->RuleValidate($request);
 
         $inputs = $request->all();
-        // $inputs['attached_file_image'] = $this->setFile($request);
-        // Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
-
-        // return response()->json($inputs, 200);
+        $inputs['attached_file_image'] = $this->setFile($request);
+        Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
     }
