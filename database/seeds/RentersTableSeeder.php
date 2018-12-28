@@ -14,6 +14,7 @@ class RentersTableSeeder extends Seeder
     {
         DB::table('renters')->insert([
             [
+                'prefix'              => 'mister',
                 'first_name'          => 'เกียรติพงศ์',
                 'last_name'           => 'สิงห์สีโว',
                 'id_card'             => '1450700099241',
