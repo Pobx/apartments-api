@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class RenterPartnersController extends Controller
 {
+    //
+
     /**
      * Create a new controller instance.
      *
@@ -16,6 +18,33 @@ class RenterPartnersController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function create(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        $result = RenterPartners::create($inputs);
+
+        return response()->json($result->id, 201);
+    }
+
+    public function partners_by_renter_id($id = null)
+    {
+        $results = RenterPartners::where('renters_id', '=', $id)->get();
+
+        return response()->json($results, 200);
+    }
+
+    public function remove_partner(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
     }
 
     private function RuleValidate($request)
@@ -31,26 +60,4 @@ class RenterPartnersController extends Controller
             ],
         ]);
     }
-
-    public function create(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        $result = RenterPartners::create($inputs);
-
-        return response()->json($result->id, 201);
-    }
-
-    public function remove_partner(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
-
-        return response()->json($inputs, 200);
-    }
-
-    //
 }

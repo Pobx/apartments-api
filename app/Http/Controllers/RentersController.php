@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Renters;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\RenterPartners;
 
 class RentersController extends Controller
 {
@@ -52,8 +53,21 @@ class RentersController extends Controller
         $this->RuleValidate($request);
 
         $inputs = $request->all();
+        $partners = $inputs['partners']?? [];
+        unset($inputs['partners']);
+
         $inputs['attached_file_image'] = $this->setFile($request);
         Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        foreach ($partners as $key => $value) {
+          if ($value['id'] != '0') {
+            // $partner = [
+
+            // ];
+
+            // RenterPartners::create($partner);
+          }
+        }
 
         return response()->json($inputs, 200);
     }
