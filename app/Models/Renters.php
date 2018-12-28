@@ -21,6 +21,6 @@ class Renters extends Model
 
     public function rooms()
     {
-        return $this->hasOne('App\Models\Rooms', 'id', 'renters_id');
+        return $this->hasMany('App\Models\Rooms', 'renters_id', 'id');
     }
 }
