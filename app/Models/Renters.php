@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Renters extends Model
 {
     protected $fillable = [
+        'prefix',
         'first_name',
         'last_name',
         'id_card',
