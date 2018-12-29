@@ -39,6 +39,6 @@ class UploadController extends Controller
             $image->move($path, $link_name);
         }
 
-        return response()->json($link_name, 200);
+        return response()->json(['link_name' => $link_name], 200);
     }
 }
