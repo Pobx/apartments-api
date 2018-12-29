@@ -58,6 +58,9 @@ $router->get('utilities-categories', 'UtilityCategoriesController@index');
 $router->post('utilities-categories/create', 'UtilityCategoriesController@create');
 $router->put('utilities-categories/update', 'UtilityCategoriesController@update');
 
+
+$router->post('uploads/image', 'UploadController@upload_image');
+
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');
