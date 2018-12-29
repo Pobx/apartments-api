@@ -49,7 +49,7 @@ class RentersController extends Controller
 
             if (file_exists($path) && $results['attached_file_image'] != null)
             {
-                $results['image_path'] = $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/public/images/' . $results['attached_file_image'];
+                $results['image_path'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/public/images/' . $results['attached_file_image'];
             }
 
         }
