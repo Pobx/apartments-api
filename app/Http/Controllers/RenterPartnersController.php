@@ -30,7 +30,7 @@ class RenterPartnersController extends Controller
         return response()->json($result->id, 201);
     }
 
-    public function partners_by_renter_id($id = null)
+    public function partners_by_renters_id($id = null)
     {
         $results = RenterPartners::where(
             [
