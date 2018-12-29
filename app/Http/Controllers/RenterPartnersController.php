@@ -32,15 +32,18 @@ class RenterPartnersController extends Controller
 
     public function partners_by_renter_id($id = null)
     {
-        $results = RenterPartners::where('renters_id', '=', $id)->get();
+        $results = RenterPartners::where(
+            [
+                ['renters_id', '=', $id],
+                ['status', '=', 'active'],
+            ]
+        )->get();
 
         return response()->json($results, 200);
     }
 
     public function remove_partner(Request $request)
     {
-        $this->RuleValidate($request);
-
         $inputs = $request->all();
         RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
 
@@ -53,7 +56,7 @@ class RenterPartnersController extends Controller
             'renters_id' => 'required|numeric',
             'first_name' => 'required|string|max:200',
             'last_name'  => 'required|string|max:200',
-            'mobile'     => 'required|numeric|max:10',
+            'mobile'     => 'required|alpha_num|max:10',
             'status'     => [
                 'required',
                 Rule::in(['active', 'disabled']),
