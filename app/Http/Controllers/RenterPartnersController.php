@@ -32,8 +32,11 @@ class RenterPartnersController extends Controller
             $this->RuleValidateArray($request);
             foreach ($inputs as $key => $value)
             {
-                $result = RenterPartners::create($value);
-                array_push($results, $result);
+                if ($value['id'] == '0')
+                {
+                    $result = RenterPartners::create($value);
+                    array_push($results, $result);
+                }
             }
         }
         else
