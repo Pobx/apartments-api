@@ -29,7 +29,8 @@ class UploadController extends Controller
     {
         $inputs = $request->all();
         $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
-
+        $link_name = null;
+        
         if ($request->hasFile('image'))
         {
             $image       = $request->file('image');
