@@ -28,7 +28,7 @@ class UploadController extends Controller
     public function upload_image(Request $request)
     {
         $inputs = $request->all();
-        $path   = $_SERVER['DOCUMENT_ROOT'] . '/images';
+        $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
 
         if ($request->hasFile('image'))
         {
