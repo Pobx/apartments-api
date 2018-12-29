@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Renters;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\RenterPartners;
 
 class RentersController extends Controller
 {
+    // private function setFile($request)
+    // {
+    //     $upload = new UploadController;
+    //     $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
+    //     return $upload->uploadFile($request, $path);
+    // }
+
     //
 
     /**
@@ -35,6 +41,18 @@ class RentersController extends Controller
     public function find($id)
     {
         $results = Renters::find($id);
+
+        if (!empty($results))
+        {
+            $path                  = $_SERVER['DOCUMENT_ROOT'] . '/public/images/' . $results['attached_file_image'];
+            $results['image_path'] = $_SERVER['DOCUMENT_ROOT'] . '/public/default_images/no-image.png';
+
+            if (file_exists($path) && $results['attached_file_image'] != null)
+            {
+                $results['image_path'] = $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/public/images/' . $results['attached_file_image'];
+            }
+
+        }
 
         return response()->json($results, 200);
     }
@@ -86,12 +104,4 @@ class RentersController extends Controller
         ]);
 
     }
-
-    // private function setFile($request)
-    // {
-    //     $upload = new UploadController;
-    //     $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
-
-    //     return $upload->uploadFile($request, $path);
-    // }
 }
