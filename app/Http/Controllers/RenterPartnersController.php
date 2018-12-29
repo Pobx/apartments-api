@@ -22,21 +22,23 @@ class RenterPartnersController extends Controller
 
     public function create(Request $request)
     {
-        $this->RuleValidate($request);
 
-        $inputs  = $request->all();
+        $inputs = $request->all();
+
         $results = [];
-        
+
         if (is_array($inputs))
         {
+            $this->RuleValidateArray($request);
             foreach ($inputs as $key => $value)
             {
-                $result = RenterPartners::create($inputs);
+                $result = RenterPartners::create($value);
                 array_push($results, $result);
             }
         }
         else
         {
+            $this->RuleValidate($request);
             $result = RenterPartners::create($inputs);
             array_push($results, $result);
         }
@@ -72,6 +74,20 @@ class RenterPartnersController extends Controller
             'last_name'  => 'required|string|max:200',
             'mobile'     => 'required|alpha_num|max:10',
             'status'     => [
+                'required',
+                Rule::in(['active', 'disabled']),
+            ],
+        ]);
+    }
+
+    private function RuleValidateArray($request)
+    {
+        $this->validate($request, [
+            '*.renters_id' => 'required|numeric',
+            '*.first_name' => 'required|string|max:200',
+            '*.last_name'  => 'required|string|max:200',
+            '*.mobile'     => 'required|alpha_num|max:10',
+            '*.status'     => [
                 'required',
                 Rule::in(['active', 'disabled']),
             ],
