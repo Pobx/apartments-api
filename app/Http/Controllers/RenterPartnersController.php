@@ -24,10 +24,24 @@ class RenterPartnersController extends Controller
     {
         $this->RuleValidate($request);
 
-        $inputs = $request->all();
-        $result = RenterPartners::create($inputs);
+        $inputs  = $request->all();
+        $results = [];
+        
+        if (is_array($inputs))
+        {
+            foreach ($inputs as $key => $value)
+            {
+                $result = RenterPartners::create($inputs);
+                array_push($results, $result);
+            }
+        }
+        else
+        {
+            $result = RenterPartners::create($inputs);
+            array_push($results, $result);
+        }
 
-        return response()->json($result->id, 201);
+        return response()->json($results, 201);
     }
 
     public function partners_by_renters_id($id = null)
