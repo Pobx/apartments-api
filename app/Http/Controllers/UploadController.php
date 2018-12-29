@@ -27,10 +27,10 @@ class UploadController extends Controller
 
     public function upload_image(Request $request)
     {
-        $inputs = $request->all();
-        $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
+        $inputs    = $request->all();
+        $path      = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
         $link_name = null;
-        
+
         if ($request->hasFile('image'))
         {
             $image       = $request->file('image');
@@ -40,6 +40,12 @@ class UploadController extends Controller
             $image->move($path, $link_name);
         }
 
-        return response()->json(['link_name' => $link_name], 200);
+        $link_path = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/public/default_images/' . $link_name;
+
+        return response()->json(
+            [
+                'link_name' => $link_name,
+                'link_path' => $link_path,
+            ], 200);
     }
 }
