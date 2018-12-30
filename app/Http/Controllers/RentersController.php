@@ -13,13 +13,20 @@ class RentersController extends Controller
      *
      * @return void
      */
+
+    private $dateController = null;
+
     public function __construct()
     {
-        //
+        $this->dateController = new DatesController;
     }
 
     public function create(Request $request)
     {
+        $request->merge([
+            'date_of_birth' => $this->dateController->setDateEn($request->date_of_birth),
+        ]);
+
         $this->RuleValidate($request);
 
         $inputs = $request->all();
@@ -34,11 +41,11 @@ class RentersController extends Controller
 
         if (!empty($results))
         {
-            $image                 = new ImagesController;
-            $results['image_path'] = $image->getImages($results['attached_file_image'], '/public/images/');
-            $results['date_of_birth'] = date( "d/m/Y", strtotime( "{$results['date_of_birth']} +543 year" ));
+            $image                    = new ImagesController;
+            $results['image_path']    = $image->getImages($results['attached_file_image'], '/public/images/');
+            $results['date_of_birth'] = date('d/m/Y', strtotime("{$results['date_of_birth']} +543 year"));
         }
-        
+
         return response()->json($results, 200);
     }
 
@@ -53,6 +60,10 @@ class RentersController extends Controller
 
     public function update(Request $request)
     {
+        $request->merge([
+            'date_of_birth' => $this->dateController->setDateEn($request->date_of_birth),
+        ]);
+
         $this->RuleValidate($request);
 
         $inputs = $request->all();
