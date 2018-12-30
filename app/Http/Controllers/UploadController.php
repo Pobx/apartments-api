@@ -8,7 +8,7 @@ class UploadController extends Controller
 {
     public function upload_file(Request $request)
     {
-        $public_path = '/public/attached_files';
+        $public_path = '/public/attached_files/';
         $inputs      = $request->all();
         $path        = $_SERVER['DOCUMENT_ROOT'] . $public_path;
         $link_name   = null;
@@ -34,7 +34,7 @@ class UploadController extends Controller
 
     public function upload_image(Request $request)
     {
-        $public_path = '/public/images';
+        $public_path = '/public/images/';
         $inputs      = $request->all();
         $path        = $_SERVER['DOCUMENT_ROOT'] . $public_path;
         $link_name   = null;
