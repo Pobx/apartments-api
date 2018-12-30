@@ -32,8 +32,9 @@ class RentersAttachedFilesController extends Controller
         $this->RuleValidate($request);
 
         $inputs = $request->all();
-       
-        return response()->json($result->id, 201);
+        $results = RentersAttachedFiles::create($inputs);
+
+        return response()->json($results, 201);
     }
 
     public function remove_attached_file(Request $request)
