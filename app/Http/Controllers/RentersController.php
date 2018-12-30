@@ -25,7 +25,7 @@ class RentersController extends Controller
         $inputs = $request->all();
         $result = Renters::create($inputs);
 
-        return response()->json($result, 201);
+        return response()->json($request, 201);
     }
 
     public function find($id)
@@ -36,8 +36,11 @@ class RentersController extends Controller
         {
             $image                 = new ImagesController;
             $results['image_path'] = $image->getImages($results['attached_file_image'], '/public/images/');
+            $results['date_of_birth'] = date( "d/m/Y", strtotime( "{$results['date_of_birth']} +543 year" ));
         }
-
+        // $date = str_replace('/', '-', '16/05/2530');
+        // echo $date;
+        // return date( "Y-m-d", strtotime( "{$date} -543 year" ));
         return response()->json($results, 200);
     }
 
