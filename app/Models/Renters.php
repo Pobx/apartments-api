@@ -24,4 +24,9 @@ class Renters extends Model
     {
         return $this->hasMany('App\Models\Rooms', 'renters_id', 'id');
     }
+
+    public function attached_files()
+    {
+        return $this->hasOne('App\Models\RentersAttachedFiles', 'renters_id', 'id');
+    }
 }
