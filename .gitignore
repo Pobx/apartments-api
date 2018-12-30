@@ -6,3 +6,4 @@ Homestead.yaml
 /public/images
 !/public/images/.gitkeep
 /public/attached_files
+!/public/attached_files/.gitkeep
