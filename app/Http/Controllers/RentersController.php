@@ -22,8 +22,8 @@ class RentersController extends Controller
     {
         $this->RuleValidate($request);
 
-        $inputs                        = $request->all();
-        $result                        = Renters::create($inputs);
+        $inputs = $request->all();
+        $result = Renters::create($inputs);
 
         return response()->json($result, 201);
     }
@@ -34,16 +34,8 @@ class RentersController extends Controller
 
         if (!empty($results))
         {
-            $path       = $_SERVER['DOCUMENT_ROOT'] . '/public/images/' . $results['attached_file_image'];
-            $image_path = '/public/default_images/no-image.png';
-
-            if (file_exists($path) && $results['attached_file_image'] != null)
-            {
-                $image_path = '/public/images/' . $results['attached_file_image'];
-            }
-
-            $results['image_path'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $image_path;
-
+            $image                 = new ImagesController;
+            $results['image_path'] = $image->getImages($results['attached_file_image'], '/public/images/');
         }
 
         return response()->json($results, 200);

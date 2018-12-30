@@ -40,7 +40,8 @@ class UploadController extends Controller
             $image->move($path, $link_name);
         }
 
-        $link_path = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/public/images/' . $link_name;
+        $image     = new ImagesController;
+        $link_path = $image->getImages($link_name, '/public/images/');
 
         return response()->json(
             [
