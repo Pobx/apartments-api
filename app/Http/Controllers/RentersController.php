@@ -38,9 +38,7 @@ class RentersController extends Controller
             $results['image_path'] = $image->getImages($results['attached_file_image'], '/public/images/');
             $results['date_of_birth'] = date( "d/m/Y", strtotime( "{$results['date_of_birth']} +543 year" ));
         }
-        // $date = str_replace('/', '-', '16/05/2530');
-        // echo $date;
-        // return date( "Y-m-d", strtotime( "{$date} -543 year" ));
+        
         return response()->json($results, 200);
     }
 
@@ -88,6 +86,5 @@ class RentersController extends Controller
             ],
             'status'        => 'required',
         ]);
-
     }
 }
