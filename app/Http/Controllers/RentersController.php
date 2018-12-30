@@ -44,8 +44,13 @@ class RentersController extends Controller
 
         if (!empty($results))
         {
-            $image                    = new ImagesController;
-            $results['image_path']    = $image->getImages($results['attached_file_image'], '/public/images/');
+            $image                 = new ImagesController;
+            $results['image_path'] = $image->getImages($results['attached_file_image'], '/public/images/');
+
+            $results['attached_name'] = $results['attached_files']['attached_name'] ?? null;
+            // $file                     = new FilesController;
+            // $results['file_path']     = $ifilemage->getFiles($results['attached_name'], '/public/attached_files/');
+
             $results['date_of_birth'] = date('d/m/Y', strtotime("{$results['date_of_birth']} +543 year"));
         }
 
