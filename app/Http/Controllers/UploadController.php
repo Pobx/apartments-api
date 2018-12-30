@@ -21,8 +21,8 @@ class UploadController extends Controller
             $image->move($path, $link_name);
         }
 
-        $image     = new FilesController;
-        $link_path = $image->getFiles($link_name, '/public/files/');
+        $file     = new FilesController;
+        $link_path = $file->getFiles($link_name, '/public/files/');
 
         return response()->json(
             [

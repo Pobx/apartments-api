@@ -60,6 +60,7 @@ $router->put('utilities-categories/update', 'UtilityCategoriesController@update'
 
 
 $router->post('uploads/image', 'UploadController@upload_image');
+$router->post('uploads/file', 'UploadController@upload_file');
 
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
