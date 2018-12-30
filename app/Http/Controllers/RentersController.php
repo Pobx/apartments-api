@@ -8,15 +8,6 @@ use Illuminate\Validation\Rule;
 
 class RentersController extends Controller
 {
-    // private function setFile($request)
-    // {
-    //     $upload = new UploadController;
-    //     $path   = $_SERVER['DOCUMENT_ROOT'] . '/public/images';
-    //     return $upload->uploadFile($request, $path);
-    // }
-
-    //
-
     /**
      * Create a new controller instance.
      *
@@ -32,7 +23,6 @@ class RentersController extends Controller
         $this->RuleValidate($request);
 
         $inputs                        = $request->all();
-        $inputs['attached_file_image'] = $this->setFile($request);
         $result                        = Renters::create($inputs);
 
         return response()->json($result, 201);
@@ -73,7 +63,6 @@ class RentersController extends Controller
         $this->RuleValidate($request);
 
         $inputs = $request->all();
-        // $inputs['attached_file_image'] = $this->setFile($request);
         Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
