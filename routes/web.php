@@ -58,7 +58,7 @@ $router->get('utilities-categories', 'UtilityCategoriesController@index');
 $router->post('utilities-categories/create', 'UtilityCategoriesController@create');
 $router->put('utilities-categories/update', 'UtilityCategoriesController@update');
 
-
+// upload files maybe public methods
 $router->post('uploads/image', 'UploadController@upload_image');
 $router->post('uploads/file', 'UploadController@upload_file');
 

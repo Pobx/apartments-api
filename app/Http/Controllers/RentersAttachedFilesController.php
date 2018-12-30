@@ -27,21 +27,12 @@ class RentersAttachedFilesController extends Controller
         ]);
     }
 
-    private function setFile($request)
-    {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/attached_files';
-        $upload = new UploadController;
-        return $upload->uploadFile($request, $path);
-    }
-
     public function create(Request $request)
     {
         $this->RuleValidate($request);
 
         $inputs = $request->all();
-        $inputs['attached_name'] = $this->setFile($request);
-        $result = RentersAttachedFiles::create($inputs);
-
+       
         return response()->json($result->id, 201);
     }
 
