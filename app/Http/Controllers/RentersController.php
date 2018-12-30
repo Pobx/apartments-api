@@ -37,13 +37,17 @@ class RentersController extends Controller
 
     public function find($id)
     {
-        $results = Renters::find($id);
+        $results = Renters::with(['attached_files' => function ($query)
+        {
+            $query->where('status', '=', 'active');
+        }])->find($id);
 
         if (!empty($results))
         {
             $image                    = new ImagesController;
             $results['image_path']    = $image->getImages($results['attached_file_image'], '/public/images/');
             $results['date_of_birth'] = date('d/m/Y', strtotime("{$results['date_of_birth']} +543 year"));
+            $results['pop']           = 'sss';
         }
 
         return response()->json($results, 200);
