@@ -16,9 +16,15 @@ class RentersController extends Controller
 
     private $dateController = null;
 
+    private $filesController = null;
+
+    private $imagesController = null;
+
     public function __construct()
     {
-        $this->dateController = new DatesController;
+        $this->dateController   = new DatesController;
+        $this->imagesController = new ImagesController;
+        $this->filesController  = new FilesController;
     }
 
     public function create(Request $request)
@@ -44,12 +50,11 @@ class RentersController extends Controller
 
         if (!empty($results))
         {
-            $image                 = new ImagesController;
-            $results['image_path'] = $image->getImages($results['attached_file_image'], '/public/images/');
+            $results['image_path'] = $this->imagesController->getImages($results['attached_file_image'], '/public/images/');
 
             $results['attached_name'] = $results['attached_files']['attached_name'] ?? null;
-            // $file                     = new FilesController;
-            // $results['file_path']     = $ifilemage->getFiles($results['attached_name'], '/public/attached_files/');
+
+            $results['file_path'] = $this->filesController->getFiles($results['attached_name'], '/public/attached_files/');
 
             $results['date_of_birth'] = date('d/m/Y', strtotime("{$results['date_of_birth']} +543 year"));
         }
