@@ -52,9 +52,10 @@ class RentersController extends Controller
         {
             $results['image_path'] = $this->imagesController->getImages($results['attached_file_image'], '/public/images/');
 
-            $results['attached_name'] = $results['attached_files']['attached_name'] ?? null;
+            $results['attached_file_name'] = $results['attached_files']['attached_name'] ?? null;
+            $results['attached_file_id'] = $results['attached_files']['id'] ?? null;
 
-            $results['file_path'] = $this->filesController->getFiles($results['attached_name'], '/public/attached_files/');
+            $results['attached_file_path'] = $this->filesController->getFiles($results['attached_file_name'], '/public/attached_files/');
 
             $results['date_of_birth'] = date('d/m/Y', strtotime("{$results['date_of_birth']} +543 year"));
         }

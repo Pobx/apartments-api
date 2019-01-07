@@ -35,6 +35,7 @@ $router->post('renters/create', 'RentersController@create');
 $router->put('renters/update', 'RentersController@update');
 
 $router->post('renters-attached-files/create', 'RentersAttachedFilesController@create');
+$router->put('renters-attached-files/update-attached-file-by-renters-id', 'RentersAttachedFilesController@update_by_renters_id');
 $router->put('renters-attached-files/remove-attached-file', 'RentersAttachedFilesController@remove_attached_file');
 
 $router->get('renters-partners-by-renter-id/{id}', 'RenterPartnersController@partners_by_renters_id');

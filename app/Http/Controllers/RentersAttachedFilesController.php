@@ -47,5 +47,15 @@ class RentersAttachedFilesController extends Controller
         return response()->json($inputs, 200);
     }
 
+    public function update_by_renters_id(Request $request)
+    {
+      $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        RentersAttachedFiles::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
+    }
+
     //
 }
