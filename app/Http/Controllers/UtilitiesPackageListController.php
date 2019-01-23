@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class UtilitiesPackageListController extends Controller
 {
+    //
+
     /**
      * Create a new controller instance.
      *
@@ -16,6 +18,33 @@ class UtilitiesPackageListController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function create(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        $result = UtilitiesPackageList::create($inputs);
+
+        return response()->json($result->id, 201);
+    }
+
+    public function index()
+    {
+        $results = UtilitiesPackageList::all();
+
+        return response()->json($results, 200);
+    }
+
+    public function update(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        UtilitiesPackageList::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
     }
 
     private function RuleValidate($request)
@@ -29,26 +58,4 @@ class UtilitiesPackageListController extends Controller
             ],
         ]);
     }
-
-    public function create(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        $result = UtilitiesPackageList::create($inputs);
-
-        return response()->json($result->id, 201);
-    }
-
-    public function update(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        UtilitiesPackageList::updateOrCreate(['id' => $inputs['id']], $inputs);
-
-        return response()->json($inputs, 200);
-    }
-
-    //
 }
