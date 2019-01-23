@@ -53,6 +53,7 @@ $router->get('utilities-packages', 'UtilitiesPackagesController@index');
 $router->post('utilities-packages/create', 'UtilitiesPackagesController@create');
 $router->put('utilities-packages/update', 'UtilitiesPackagesController@update');
 
+$router->get('utilities-package-list', 'UtilitiesPackageListController@index');
 $router->post('utilities-package-list/create', 'UtilitiesPackageListController@create');
 $router->put('utilities-package-list/update', 'UtilitiesPackageListController@update');
 
