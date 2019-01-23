@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class UtilitiesPackagesController extends Controller
 {
+    //
+
     /**
      * Create a new controller instance.
      *
@@ -16,17 +18,6 @@ class UtilitiesPackagesController extends Controller
     public function __construct()
     {
         //
-    }
-
-    private function RuleValidate($request)
-    {
-        $this->validate($request, [
-            'name'   => 'required|string',
-            'status' => [
-                'required',
-                Rule::in(['active', 'disabled']),
-            ],
-        ]);
     }
 
     public function create(Request $request)
@@ -39,6 +30,13 @@ class UtilitiesPackagesController extends Controller
         return response()->json($result->id, 201);
     }
 
+    public function index()
+    {
+        $results = UtilitiesPackages::all();
+
+        return response()->json($results, 200);
+    }
+
     public function update(Request $request)
     {
         $this->RuleValidate($request);
@@ -49,5 +47,14 @@ class UtilitiesPackagesController extends Controller
         return response()->json($inputs, 200);
     }
 
-    //
+    private function RuleValidate($request)
+    {
+        $this->validate($request, [
+            'name'   => 'required|string',
+            'status' => [
+                'required',
+                Rule::in(['active', 'disabled']),
+            ],
+        ]);
+    }
 }
