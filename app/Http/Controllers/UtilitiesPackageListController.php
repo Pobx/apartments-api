@@ -30,6 +30,18 @@ class UtilitiesPackageListController extends Controller
         return response()->json($result->id, 201);
     }
 
+    public function find_by_packages_id($id = null)
+    {
+        $results = UtilitiesPackageList::where(
+            [
+                ['utilities_packages_id', '=', $id],
+                ['status', '=', 'active'],
+            ]
+        )->get();
+
+        return response()->json($results, 200);
+    }
+
     public function index()
     {
         $results = UtilitiesPackageList::all();
