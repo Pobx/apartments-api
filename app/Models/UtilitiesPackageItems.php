@@ -13,4 +13,9 @@ class UtilitiesPackageItems extends Model
     ];
 
     protected $table = 'utilities_package_items';
+
+    public function utilities_items()
+    {
+        return $this->hasOne('App\Models\UtilityCategories', 'id', 'utility_categories_id');
+    }
 }

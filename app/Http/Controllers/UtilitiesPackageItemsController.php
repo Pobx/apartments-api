@@ -32,7 +32,9 @@ class UtilitiesPackageItemsController extends Controller
 
     public function find_by_packages_id($id = null)
     {
-        $results = UtilitiesPackageItems::where(
+        $results = UtilitiesPackageItems::with([
+            'utilities_items:id,name',
+        ])->where(
             [
                 ['utilities_packages_id', '=', $id],
                 ['status', '=', 'active'],
