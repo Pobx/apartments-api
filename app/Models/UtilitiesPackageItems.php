@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UtilitiesPackageList extends Model
+class UtilitiesPackageItems extends Model
 {
     protected $fillable = [
         'id',

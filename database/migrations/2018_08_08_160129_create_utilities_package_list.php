@@ -13,7 +13,7 @@ class CreateUtilitiesPackageList extends Migration
      */
     public function up()
     {
-        Schema::create('utilities_package_list', function (Blueprint $table)
+        Schema::create('utilities_package_items', function (Blueprint $table)
         {
             $table->increments('id');
             $table->integer('utilities_packages_id')->nullable(true)->default(null)->unsigned();
@@ -32,6 +32,6 @@ class CreateUtilitiesPackageList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('utilities_package_list');
+        Schema::dropIfExists('utilities_package_items');
     }
 }

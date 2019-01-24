@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UtilitiesPackageList;
+use App\Models\UtilitiesPackageItems;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -25,14 +25,14 @@ class UtilitiesPackageItemsController extends Controller
         $this->RuleValidate($request);
 
         $inputs = $request->all();
-        $result = UtilitiesPackageList::create($inputs);
+        $result = UtilitiesPackageItems::create($inputs);
 
         return response()->json($result->id, 201);
     }
 
     public function find_by_packages_id($id = null)
     {
-        $results = UtilitiesPackageList::where(
+        $results = UtilitiesPackageItems::where(
             [
                 ['utilities_packages_id', '=', $id],
                 ['status', '=', 'active'],
@@ -44,7 +44,7 @@ class UtilitiesPackageItemsController extends Controller
 
     public function index()
     {
-        $results = UtilitiesPackageList::all();
+        $results = UtilitiesPackageItems::all();
 
         return response()->json($results, 200);
     }
@@ -54,7 +54,7 @@ class UtilitiesPackageItemsController extends Controller
         $this->RuleValidate($request);
 
         $inputs = $request->all();
-        UtilitiesPackageList::updateOrCreate(['id' => $inputs['id']], $inputs);
+        UtilitiesPackageItems::updateOrCreate(['id' => $inputs['id']], $inputs);
 
         return response()->json($inputs, 200);
     }

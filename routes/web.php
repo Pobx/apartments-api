@@ -53,10 +53,10 @@ $router->get('utilities-packages', 'UtilitiesPackagesController@index');
 $router->post('utilities-packages/create', 'UtilitiesPackagesController@create');
 $router->put('utilities-packages/update', 'UtilitiesPackagesController@update');
 
-$router->get('utilities-package-list', 'UtilitiesPackageItemsController@index');
-$router->get('utilities-package-list-by-packages-id/{id}', 'UtilitiesPackageItemsController@find_by_packages_id');
-$router->post('utilities-package-list/create', 'UtilitiesPackageItemsController@create');
-$router->put('utilities-package-list/update', 'UtilitiesPackageItemsController@update');
+$router->get('utilities-package-items', 'UtilitiesPackageItemsController@index');
+$router->get('utilities-package-items-by-packages-id/{id}', 'UtilitiesPackageItemsController@find_by_packages_id');
+$router->post('utilities-package-items/create', 'UtilitiesPackageItemsController@create');
+$router->put('utilities-package-items/update', 'UtilitiesPackageItemsController@update');
 
 $router->get('utilities-categories', 'UtilityCategoriesController@index');
 $router->post('utilities-categories/create', 'UtilityCategoriesController@create');
