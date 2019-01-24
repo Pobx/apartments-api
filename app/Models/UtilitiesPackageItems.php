@@ -12,5 +12,5 @@ class UtilitiesPackageItems extends Model
         'status',
     ];
 
-    protected $table = 'utilities_package_list';
+    protected $table = 'utilities_package_items';
 }
