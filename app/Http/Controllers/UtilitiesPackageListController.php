@@ -6,7 +6,7 @@ use App\Models\UtilitiesPackageList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class UtilitiesPackageListController extends Controller
+class UtilitiesPackageItemsController extends Controller
 {
     //
 
