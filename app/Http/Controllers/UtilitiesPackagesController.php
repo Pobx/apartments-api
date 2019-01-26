@@ -32,7 +32,12 @@ class UtilitiesPackagesController extends Controller
 
     public function index()
     {
-        $results = UtilitiesPackages::all();
+        $results = UtilitiesPackages::with([
+            'utilities_package_items.utilities_items' => function ($query)
+            {
+                $query->where('status', '=', 'active');
+            },
+        ])->get();
 
         return response()->json($results, 200);
     }
