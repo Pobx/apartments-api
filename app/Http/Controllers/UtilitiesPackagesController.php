@@ -33,11 +33,17 @@ class UtilitiesPackagesController extends Controller
     public function index()
     {
         $results = UtilitiesPackages::with([
-            'utilities_package_items.utilities_items' => function ($query)
+            'utilities_package_items'                 => function ($query)
             {
+                $query->select('id', 'utilities_packages_id', 'utility_categories_id');
                 $query->where('status', '=', 'active');
             },
-        ])->get();
+            'utilities_package_items.utilities_items' => function ($query)
+            {
+                $query->select('id', 'name');
+                $query->where('status', '=', 'active');
+            },
+        ])->get(['utilities_packages.id', 'utilities_packages.name', 'utilities_packages.status']);
 
         return response()->json($results, 200);
     }
