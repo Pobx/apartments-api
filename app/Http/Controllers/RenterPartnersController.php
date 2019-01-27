@@ -49,6 +49,16 @@ class RenterPartnersController extends Controller
         return response()->json($results, 201);
     }
 
+    public function update(Request $request)
+    {
+        $this->RuleValidate($request);
+
+        $inputs = $request->all();
+        RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
+    }
+
     public function partners_by_renters_id($id = null)
     {
         $results = RenterPartners::where(
