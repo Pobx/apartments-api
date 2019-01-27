@@ -86,6 +86,14 @@ class RentersController extends Controller
         return response()->json($inputs, 200);
     }
 
+    public function update_status(Request $request)
+    {
+        $inputs = $request->all();
+        Renters::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
+    }
+
     private function RuleValidate($request)
     {
         $this->validate($request, [

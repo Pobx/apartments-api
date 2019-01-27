@@ -33,6 +33,7 @@ $router->get('renters', 'RentersController@index');
 $router->get('renters-by-id/{id}', 'RentersController@find');
 $router->post('renters/create', 'RentersController@create');
 $router->put('renters/update', 'RentersController@update');
+$router->put('renters/update-status', 'RentersController@update_status');
 
 $router->post('renters-attached-files/create', 'RentersAttachedFilesController@create');
 $router->put('renters-attached-files/update-attached-file-by-renters-id', 'RentersAttachedFilesController@update_by_renters_id');
