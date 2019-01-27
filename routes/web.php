@@ -40,6 +40,7 @@ $router->put('renters-attached-files/remove-attached-file', 'RentersAttachedFile
 
 $router->get('renters-partners-by-renter-id/{id}', 'RenterPartnersController@partners_by_renters_id');
 $router->post('renters-partners/create', 'RenterPartnersController@create');
+$router->put('renters-partners/update', 'RenterPartnersController@update');
 $router->put('renters-partners/remove-partner', 'RenterPartnersController@remove_partner');
 
 $router->get('rooms', 'RoomsController@index');
