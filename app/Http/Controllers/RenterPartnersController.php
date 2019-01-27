@@ -20,43 +20,43 @@ class RenterPartnersController extends Controller
         //
     }
 
+    // public function create(Request $request)
+    // {
+
+    //     $inputs = $request->all();
+
+    //     $results = [];
+
+    //     if (is_array($inputs))
+    //     {
+    //         $this->RuleValidateArray($request);
+    //         foreach ($inputs as $key => $value)
+    //         {
+    //             if ($value['id'] == '0')
+    //             {
+    //                 $result = RenterPartners::create($value);
+    //                 array_push($results, $result);
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         $this->RuleValidate($request);
+    //         $result = RenterPartners::create($inputs);
+    //         array_push($results, $result);
+    //     }
+
+    //     return response()->json($results, 201);
+    // }
+
     public function create(Request $request)
     {
-
         $inputs = $request->all();
 
-        $results = [];
-
-        if (is_array($inputs))
-        {
-            $this->RuleValidateArray($request);
-            foreach ($inputs as $key => $value)
-            {
-                if ($value['id'] == '0')
-                {
-                    $result = RenterPartners::create($value);
-                    array_push($results, $result);
-                }
-            }
-        }
-        else
-        {
-            $this->RuleValidate($request);
-            $result = RenterPartners::create($inputs);
-            array_push($results, $result);
-        }
+        $this->RuleValidate($request);
+        $result = RenterPartners::create($inputs);
 
         return response()->json($results, 201);
-    }
-
-    public function update(Request $request)
-    {
-        $this->RuleValidate($request);
-
-        $inputs = $request->all();
-        RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
-
-        return response()->json($inputs, 200);
     }
 
     public function partners_by_renters_id($id = null)
@@ -73,6 +73,16 @@ class RenterPartnersController extends Controller
 
     public function remove_partner(Request $request)
     {
+        $inputs = $request->all();
+        RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
+
+        return response()->json($inputs, 200);
+    }
+
+    public function update(Request $request)
+    {
+        $this->RuleValidate($request);
+
         $inputs = $request->all();
         RenterPartners::updateOrCreate(['id' => $inputs['id']], $inputs);
 
