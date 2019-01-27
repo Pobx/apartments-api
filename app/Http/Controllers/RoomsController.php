@@ -34,6 +34,8 @@ class RoomsController extends Controller
         $results = Rooms::with([
             'room_categories:id,name',
             'apartments:id,name',
+            'utilities_packages:id,name',
+            'renters:id,first_name,last_name',
         ])->get();
 
         return response()->json($results, 200);

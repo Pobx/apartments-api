@@ -5,8 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rooms extends Model
 {
-    protected $table = 'rooms';
-
     protected $fillable = [
         'name',
         'apartments_id',
@@ -17,13 +15,25 @@ class Rooms extends Model
         'renters_id',
     ];
 
+    protected $table = 'rooms';
+
+    public function apartments()
+    {
+        return $this->hasOne('App\Models\Apartments', 'id', 'apartments_id');
+    }
+
+    public function renters()
+    {
+        return $this->hasOne('App\Models\Renters', 'id', 'renters_id');
+    }
+
     public function room_categories()
     {
         return $this->hasOne('App\Models\RoomCategories', 'id', 'room_categories_id');
     }
 
-    public function apartments()
+    public function utilities_packages()
     {
-        return $this->hasOne('App\Models\Apartments', 'id', 'apartments_id');
+        return $this->hasOne('App\Models\UtilitiesPackages', 'id', 'utilities_packages_id');
     }
 }
