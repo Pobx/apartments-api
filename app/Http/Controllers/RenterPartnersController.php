@@ -54,7 +54,7 @@ class RenterPartnersController extends Controller
         $inputs = $request->all();
 
         $this->RuleValidate($request);
-        $result = RenterPartners::create($inputs);
+        $results = RenterPartners::create($inputs);
 
         return response()->json($results, 201);
     }
