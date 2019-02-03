@@ -18,6 +18,7 @@ class RentersAttachedFilesController extends Controller
     public function __construct()
     {
         //
+        $this->filesController  = new FilesController;
     }
 
     public function create(Request $request)
@@ -36,6 +37,10 @@ class RentersAttachedFilesController extends Controller
             ['renters_id', '=', $renters_id],
             ['status', '=', 'active'],
         ])->get();
+
+        foreach ($results as $key => $value) {
+          $results[$key]['attached_file_path'] = $this->filesController->getFiles($value['attached_name'], '/public/attached_files/');
+        }
 
         return response()->json($results, 200);
     }
