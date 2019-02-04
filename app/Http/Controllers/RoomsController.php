@@ -29,6 +29,15 @@ class RoomsController extends Controller
         return response()->json($result->id, 201);
     }
 
+    public function find_rooms_by_apartment_id($id)
+    {
+        $results = Rooms::where([
+            ['status', '=', 'active'],
+        ])->get();
+
+        return response()->json($results, 200);
+    }
+
     public function index()
     {
         $results = Rooms::with([
