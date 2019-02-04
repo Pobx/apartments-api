@@ -32,6 +32,7 @@ class RoomsController extends Controller
     public function find_rooms_by_apartment_id($id)
     {
         $results = Rooms::where([
+            ['apartments_id', '=', $id],
             ['status', '=', 'active'],
         ])->get();
 
