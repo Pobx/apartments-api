@@ -52,10 +52,11 @@ class RoomsController extends Controller
         foreach ($results as $key => $value)
         {
             $results[$key]['utilities_packages_items'] = [];
+            $utilities_packages_items                  = [];
             $utilities_packages_id                     = $value['utilities_packages_id'] || null;
             if ($utilities_packages_id != null)
             {
-                $results[$key]['utilities_packages_items'] = UtilitiesPackageItems::with([
+                $utilities_packages_items = UtilitiesPackageItems::with([
                     'utilities_items:id,name',
                 ])->where(
                     [
@@ -63,6 +64,13 @@ class RoomsController extends Controller
                         ['status', '=', 'active'],
                     ]
                 )->get();
+
+                $utilities_items = [];
+                foreach ($utilities_packages_items as $key1 => $value1)
+                {
+                    $utilities_items[$key1]                      = $value1['utilities_items'];
+                    $results[$key]['utilities_packages_items'] = $utilities_items;
+                }
             }
         }
 
