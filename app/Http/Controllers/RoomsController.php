@@ -68,7 +68,7 @@ class RoomsController extends Controller
                 $utilities_items = [];
                 foreach ($utilities_packages_items as $key1 => $value1)
                 {
-                    $utilities_items[$key1]                      = $value1['utilities_items'];
+                    $utilities_items[$key1]                    = $value1['utilities_items'];
                     $results[$key]['utilities_packages_items'] = $utilities_items;
                 }
             }
