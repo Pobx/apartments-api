@@ -35,7 +35,6 @@ $router->post('renters/create', 'RentersController@create');
 $router->put('renters/update', 'RentersController@update');
 $router->put('renters/update-status', 'RentersController@update_status');
 
-
 $router->get('renters-attached-files-by-renters-id/{id}', 'RentersAttachedFilesController@find_by_renters_id');
 $router->post('renters-attached-files/create', 'RentersAttachedFilesController@create');
 $router->put('renters-attached-files/update-attached-file-by-renters-id', 'RentersAttachedFilesController@update_by_renters_id');
@@ -64,6 +63,7 @@ $router->get('utilities-package-items-by-packages-id/{id}', 'UtilitiesPackageIte
 $router->post('utilities-package-items/create', 'UtilitiesPackageItemsController@create');
 $router->put('utilities-package-items/update', 'UtilitiesPackageItemsController@update');
 
+$router->get('utilities-categories-by-id/{id}', 'UtilityCategoriesController@find');
 $router->get('utilities-categories', 'UtilityCategoriesController@index');
 $router->post('utilities-categories/create', 'UtilityCategoriesController@create');
 $router->put('utilities-categories/update', 'UtilityCategoriesController@update');

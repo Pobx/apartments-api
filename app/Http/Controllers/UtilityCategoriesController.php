@@ -30,6 +30,13 @@ class UtilityCategoriesController extends Controller
         return response()->json($result->id, 201);
     }
 
+    public function find($id = null)
+    {
+        $results = UtilityCategories::find($id);
+
+        return response()->json($results, 200);
+    }
+
     public function index()
     {
         $results = UtilityCategories::all();
