@@ -39,20 +39,6 @@ class RoomsController extends Controller
             'renters:id,first_name,last_name',
         ])->find($id);
 
-        $results['utilities_packages_items'] = [];
-        $utilities_packages_id               = $results['utilities_packages_id'] || null;
-        if ($utilities_packages_id != null)
-        {
-            $results['utilities_packages_items'] = UtilitiesPackageItems::with([
-                'utilities_items:id,name',
-            ])->where(
-                [
-                    ['utilities_packages_id', '=', $utilities_packages_id],
-                    ['status', '=', 'active'],
-                ]
-            )->get();
-        }
-
         return response()->json($results, 200);
     }
 
@@ -62,6 +48,23 @@ class RoomsController extends Controller
             ['apartments_id', '=', $id],
             ['status', '=', 'active'],
         ])->get();
+
+        foreach ($results as $key => $value)
+        {
+            $results[$key]['utilities_packages_items'] = [];
+            $utilities_packages_id                     = $value['utilities_packages_id'] || null;
+            if ($utilities_packages_id != null)
+            {
+                $results[$key]['utilities_packages_items'] = UtilitiesPackageItems::with([
+                    'utilities_items:id,name',
+                ])->where(
+                    [
+                        ['utilities_packages_id', '=', $utilities_packages_id],
+                        ['status', '=', 'active'],
+                    ]
+                )->get();
+            }
+        }
 
         return response()->json($results, 200);
     }
