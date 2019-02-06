@@ -47,6 +47,7 @@ $router->put('renters-partners/update', 'RenterPartnersController@update');
 $router->put('renters-partners/remove-partner', 'RenterPartnersController@remove_partner');
 
 $router->get('rooms', 'RoomsController@index');
+$router->get('rooms-by-id/{id}', 'RoomsController@find');
 $router->get('rooms-by-apartment-id/{id}', 'RoomsController@find_rooms_by_apartment_id');
 $router->post('rooms/create', 'RoomsController@create');
 $router->put('rooms/update', 'RoomsController@update');

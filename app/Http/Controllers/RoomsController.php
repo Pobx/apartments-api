@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rooms;
+use App\Models\UtilitiesPackageItems;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -27,6 +28,32 @@ class RoomsController extends Controller
         $result = Rooms::create($inputs);
 
         return response()->json($result->id, 201);
+    }
+
+    public function find($id)
+    {
+        $results = Rooms::with([
+            'room_categories:id,name',
+            'apartments:id,name',
+            'utilities_packages:id,name',
+            'renters:id,first_name,last_name',
+        ])->find($id);
+
+        $results['utilities_packages_items'] = [];
+        $utilities_packages_id               = $results['utilities_packages_id'] || null;
+        if ($utilities_packages_id != null)
+        {
+            $results['utilities_packages_items'] = UtilitiesPackageItems::with([
+                'utilities_items:id,name',
+            ])->where(
+                [
+                    ['utilities_packages_id', '=', $utilities_packages_id],
+                    ['status', '=', 'active'],
+                ]
+            )->get();
+        }
+
+        return response()->json($results, 200);
     }
 
     public function find_rooms_by_apartment_id($id)
