@@ -24,10 +24,12 @@ class UtilitiesMonthlyUsageController extends Controller
     {
         $this->RuleValidate($request);
 
-        $inputs = $request->all();
-        $result = UtilitiesMonthlyUsage::create($inputs);
+        $inputs                      = $request->all();
+        $inputs['utility_memo_date'] = date('Y-m-d H:i:s');
+        $results                     = UtilitiesMonthlyUsage::create($inputs);
 
-        return response()->json($result->id, 201);
+        // return response()->json($results, 201);
+        return response()->json($inputs, 201);
     }
 
     public function update(Request $request)
@@ -45,8 +47,10 @@ class UtilitiesMonthlyUsageController extends Controller
         $this->validate($request, [
             'room_id'               => 'nullable|numeric',
             'utility_categories_id' => 'nullable|numeric',
-            'utility_memo_date'     => 'required|date',
+            // 'utility_memo_date'     => 'required|date',
             'unit_amount'           => 'required|numeric',
+            'price_per_unit'        => 'required|numeric',
+            'total_price'           => 'required|numeric',
             'status'                => [
                 'required',
                 Rule::in(['active', 'disabled']),
