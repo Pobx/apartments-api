@@ -37,6 +37,7 @@ class RoomsController extends Controller
             'apartments:id,name',
             'utilities_packages:id,name',
             'renters:id,first_name,last_name',
+            'utilities_monthly_usage',
         ])->find($id);
 
         return response()->json($results, 200);
@@ -54,6 +55,7 @@ class RoomsController extends Controller
             $results[$key]['utilities_packages_items'] = [];
             $utilities_packages_items                  = [];
             $utilities_packages_id                     = $value['utilities_packages_id'] || null;
+
             if ($utilities_packages_id != null)
             {
                 $utilities_packages_items = UtilitiesPackageItems::with([
