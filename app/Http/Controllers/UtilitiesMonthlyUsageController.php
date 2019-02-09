@@ -28,8 +28,7 @@ class UtilitiesMonthlyUsageController extends Controller
         $inputs['utility_memo_date'] = date('Y-m-d H:i:s');
         $results                     = UtilitiesMonthlyUsage::create($inputs);
 
-        // return response()->json($results, 201);
-        return response()->json($inputs, 201);
+        return response()->json($results, 201);
     }
 
     public function update(Request $request)
