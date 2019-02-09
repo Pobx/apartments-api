@@ -20,8 +20,10 @@ class CreateUtilitiesMonthlyUsage extends Migration
             $table->integer('utility_categories_id')->nullable(true)->default(null)->unsigned();
             $table->foreign('utility_categories_id')->references('id')->on('utility_categories');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->dateTime('utility_memo_date')->comment('วันที่บันทึกจาก User');
-            $table->float('unit_amount', 10, 2)->comment('ปริมาณการใช้งาน หน่วย');
+            $table->dateTime('utility_memo_date')->nullable(true)->default(null)->comment('วันที่บันทึกจาก User');
+            $table->float('unit_amount', 10, 2)->nullable(true)->default(null)->comment('ปริมาณการใช้งาน หน่วย');
+            $table->float('price_per_unit', 10, 2)->nullable(true)->default(null)->comment('ราคาต่อหน่วย');
+            $table->float('total_price', 10, 2)->nullable(true)->default(null)->comment('ราคารวม');
             $table->enum('status', ['active', 'disabled'])->default('active');
             $table->timestamps();
         });
