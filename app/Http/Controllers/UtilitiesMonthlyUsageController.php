@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class UtilitiesMonthlyUsageController extends Controller
 {
+    //
+
     /**
      * Create a new controller instance.
      *
@@ -16,20 +18,6 @@ class UtilitiesMonthlyUsageController extends Controller
     public function __construct()
     {
         //
-    }
-
-    private function RuleValidate($request)
-    {
-        $this->validate($request, [
-            'room_id'               => 'nullable|numeric',
-            'utility_categories_id' => 'nullable|numeric',
-            'utility_memo_date'     => 'required|date',
-            'unit_amount'           => 'required|numeric',
-            'status'                => [
-                'required',
-                Rule::in(['active', 'disabled']),
-            ],
-        ]);
     }
 
     public function create(Request $request)
@@ -52,5 +40,17 @@ class UtilitiesMonthlyUsageController extends Controller
         return response()->json($inputs, 200);
     }
 
-    //
+    private function RuleValidate($request)
+    {
+        $this->validate($request, [
+            'room_id'               => 'nullable|numeric',
+            'utility_categories_id' => 'nullable|numeric',
+            'utility_memo_date'     => 'required|date',
+            'unit_amount'           => 'required|numeric',
+            'status'                => [
+                'required',
+                Rule::in(['active', 'disabled']),
+            ],
+        ]);
+    }
 }
