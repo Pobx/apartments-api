@@ -6,6 +6,7 @@ use App\Models\Rooms;
 use App\Models\UtilitiesPackageItems;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\UtilityCategories;
 
 class RoomsController extends Controller
 {
@@ -40,6 +41,13 @@ class RoomsController extends Controller
             'utilities_monthly_usage',
         ])->find($id);
 
+        $room_categories_id = $results['room_categories']['id']?? null;
+        $results_room_categories = UtilityCategories::find($room_categories_id);
+        $results['room_categories']['price_per_unit_cost'] = $results_room_categories['price_per_unit_cost']?? 1;
+        $results['room_categories']['price_per_unit'] = $results_room_categories['price_per_unit']?? 1;
+        $results['room_categories']['unit_min_rate'] = $results_room_categories['unit_min_rate']?? 1;
+        $results['room_categories']['unit_min_price'] = $results_room_categories['unit_min_price']?? 1;
+        
         return response()->json($results, 200);
     }
 
