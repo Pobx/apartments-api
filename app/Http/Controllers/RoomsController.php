@@ -6,7 +6,6 @@ use App\Models\Rooms;
 use App\Models\UtilitiesPackageItems;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\UtilityCategories;
 
 class RoomsController extends Controller
 {
@@ -38,9 +37,12 @@ class RoomsController extends Controller
             'apartments:id,name',
             'utilities_packages:id,name',
             'renters:id,first_name,last_name',
-            'utilities_monthly_usage',
+            'utilities_monthly_usage' => function ($query)
+            {
+                $query->where('status', '=', 'active')->whereYear('utility_memo_date', '=', date('Y'));
+            },
         ])->find($id);
-        
+
         return response()->json($results, 200);
     }
 
