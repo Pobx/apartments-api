@@ -39,6 +39,6 @@ class Rooms extends Model
 
     public function utilities_monthly_usage()
     {
-        return $this->hasOne('App\Models\UtilitiesMonthlyUsage', 'room_id', 'id');
+        return $this->hasMany('App\Models\UtilitiesMonthlyUsage', 'room_id', 'id');
     }
 }
