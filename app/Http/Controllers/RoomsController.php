@@ -39,7 +39,7 @@ class RoomsController extends Controller
             'renters:id,first_name,last_name',
             'utilities_monthly_usage' => function ($query)
             {
-                $query->where('status', '=', 'active')->whereYear('utility_memo_date', '=', date('Y'));
+                $query->where('status', '=', 'active')->whereYear('utility_memo_date', '>=', date('Y') - 1)->whereYear('utility_memo_date', '<=', (date('Y')));
             },
         ])->find($id);
 
