@@ -39,7 +39,11 @@ class RoomsController extends Controller
             'renters:id,first_name,last_name',
             'utilities_monthly_usage' => function ($query)
             {
-                $query->where('status', '=', 'active')->whereYear('utility_memo_date', '>=', date('Y') - 1)->whereYear('utility_memo_date', '<=', (date('Y')))->orderBy('id', 'desc');
+                $query->select('utilities_monthly_usage.*', 'utility_categories.name AS utilities_categories_name')
+                ->leftJoin('utility_categories', 'utilities_monthly_usage.utility_categories_id', '=', 'utility_categories.id')
+                ->where('utilities_monthly_usage.status', '=', 'active')->whereYear('utilities_monthly_usage.utility_memo_date', '>=', date('Y') - 1)
+                ->whereYear('utilities_monthly_usage.utility_memo_date', '<=', (date('Y')))
+                ->orderBy('utilities_monthly_usage.id', 'desc');
             },
         ])->find($id);
 
