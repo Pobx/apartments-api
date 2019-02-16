@@ -9,6 +9,7 @@ class UtilitiesMonthlyUsage extends Model
         'room_id',
         'utility_categories_id',
         'utility_memo_date',
+        'last_unit_amount',
         'unit_amount',
         'price_per_unit',
         'total_price',

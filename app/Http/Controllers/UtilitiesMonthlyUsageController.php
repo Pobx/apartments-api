@@ -47,6 +47,7 @@ class UtilitiesMonthlyUsageController extends Controller
             'room_id'               => 'nullable|numeric',
             'utility_categories_id' => 'nullable|numeric',
             // 'utility_memo_date'     => 'required|date',
+            'last_unit_amount'      => 'required|numeric',
             'unit_amount'           => 'required|numeric',
             'price_per_unit'        => 'required|numeric',
             'total_price'           => 'required|numeric',
