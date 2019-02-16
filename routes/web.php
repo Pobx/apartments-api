@@ -72,6 +72,10 @@ $router->put('utilities-categories/update', 'UtilityCategoriesController@update'
 $router->post('uploads/image', 'UploadController@upload_image');
 $router->post('uploads/file', 'UploadController@upload_file');
 
+// get all bill 2 years latest by rooms_id
+$router->get('bills-by-rooms-id/{rooms_id}', 'BillsMonthlyUsageController@find_bill_by_rooms_id');
+$router->get('bills-by-rooms-id-and-month/create/{rooms_id}/{month}', 'BillsMonthlyUsageController@create_bill');
+
 // $router->group(['namespace' => 'App\Http\Controllers'], function () use ($router)
 // {
 //     $router->post('room-categories/store', 'RoomCategoriesController@store');

@@ -47,10 +47,11 @@ class RoomsController extends Controller
             },
         ])->find($id);
 
-        foreach ($results['utilities_monthly_usage'] as $key => $value) {
-          
-          $utility_memo_date_en = strtotime('+543 years', strtotime($value['utility_memo_date']));
-          $results['utilities_monthly_usage'][$key]['utility_memo_date_th'] = date('d/m/Y', $utility_memo_date_en);
+        foreach ($results['utilities_monthly_usage'] as $key => $value)
+        {
+
+            $utility_memo_date_en                                             = strtotime('+543 years', strtotime($value['utility_memo_date']));
+            $results['utilities_monthly_usage'][$key]['utility_memo_date_th'] = date('d/m/Y', $utility_memo_date_en);
         }
 
         return response()->json($results, 200);
