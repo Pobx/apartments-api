@@ -73,8 +73,6 @@ class BillsMonthlyUsageController extends Controller
 
         }
 
-        // imagepng($images);
-        // imagedestroy($images);
         $filename  = 'bills_' . $bill_suffix . '_' . date('YmdHis') . '_' . uniqid() . '_' . '.png';
         $path      = $this->public_path . 'attached_files/' . $filename;
         $directory = $this->public_path . 'attached_files/';
