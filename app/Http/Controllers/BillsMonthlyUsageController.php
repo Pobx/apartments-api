@@ -105,6 +105,7 @@ class BillsMonthlyUsageController extends Controller
     public function find_bill_by_rooms_id($rooms_id)
     {
         $results = Rooms::with([
+            'apartments:id,name',
             'utilities_monthly_usage' => function ($query)
             {
                 $query->select('utilities_monthly_usage.*', 'utility_categories.name AS utilities_categories_name')
@@ -130,7 +131,7 @@ class BillsMonthlyUsageController extends Controller
     private function find_bill_data_by_rooms_id_and_month($rooms_id, $month)
     {
         $results = Rooms::with([
-            'apartments',
+            'apartments:id,name',
             'utilities_monthly_usage' => function ($query) use ($month)
             {
                 $query->select('utilities_monthly_usage.*', 'utility_categories.name AS utilities_categories_name')
