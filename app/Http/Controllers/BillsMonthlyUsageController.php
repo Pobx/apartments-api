@@ -119,7 +119,9 @@ class BillsMonthlyUsageController extends Controller
 
         foreach ($results['utilities_monthly_usage'] as $key => $value)
         {
-            $results['utilities_monthly_usage'][$key]['utility_memo_month_th'] = date('Y-m-d', strtotime($value['utility_memo_date']));
+            $results['utilities_monthly_usage'][$key]['utility_memo_date_th'] = date('d/m/Y', strtotime('+543 years', strtotime($value['utility_memo_date'])));
+            $results['utilities_monthly_usage'][$key]['utility_memo_monthly_th'] = date('m/Y', strtotime('+543 years', strtotime($value['utility_memo_date'])));
+            $results['utilities_monthly_usage'][$key]['utility_memo_monthly_en'] = date('Y-m-d', strtotime($value['utility_memo_date']));
         }
 
         return response()->json($results, 200);
