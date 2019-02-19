@@ -44,12 +44,12 @@ class BillsMonthlyUsageController extends Controller
         $total_label             = 'รวม';
         $utilities_monthly_usage = $results['utilities_monthly_usage'] ?? [];
 
-        header('Content-Type: image/png');
-        $font_regular_path  = $this->public_path . 'prompt/Prompt-Regular.ttf';
-        $font_bold_path  = $this->public_path . 'prompt/Prompt-Bold.ttf';
-        $images           = ImageCreate($width, $height);
-        $background_color = imagecolorallocate($images, 255, 255, 255);
-        $text_color       = imagecolorallocate($images, 0, 0, 0);
+        // header('Content-Type: image/png');
+        $font_regular_path = $this->public_path . 'prompt/Prompt-Regular.ttf';
+        $font_bold_path    = $this->public_path . 'prompt/Prompt-Bold.ttf';
+        $images            = ImageCreate($width, $height);
+        $background_color  = imagecolorallocate($images, 255, 255, 255);
+        $text_color        = imagecolorallocate($images, 0, 0, 0);
 
         imagettftext($images, 14, 0, $margin_left, 30, $text_color, $font_regular_path, $apartment_label);
         imagettftext($images, 14, 0, $margin_left, 70, $text_color, $font_regular_path, $date_month_thai_label);
@@ -94,10 +94,10 @@ class BillsMonthlyUsageController extends Controller
         $link_url = $this->filesController->getFiles($filename, '/public/attached_files/');
 
         return response()->json([
-            'results'   => $results,
-            'filename'  => $filename,
-            'path'      => $path,
-            'link_url'  => $link_url,
+            'results'  => $results,
+            'filename' => $filename,
+            'path'     => $path,
+            'link_url' => $link_url,
 
         ], 200);
     }
