@@ -21,6 +21,9 @@ $router->get('/key', function ()
     return str_random(32);
 });
 
+$router->post('uploads/image', 'UploadController@upload_image');
+$router->post('uploads/file', 'UploadController@upload_file');
+
 $router->group(['middleware' => 'auth'], function () use ($router)
 {
     $router->get('room-categories', 'RoomCategoriesController@index');
@@ -69,9 +72,6 @@ $router->group(['middleware' => 'auth'], function () use ($router)
     $router->get('utilities-categories', 'UtilityCategoriesController@index');
     $router->post('utilities-categories/create', 'UtilityCategoriesController@create');
     $router->put('utilities-categories/update', 'UtilityCategoriesController@update');
-
-    $router->post('uploads/image', 'UploadController@upload_image');
-    $router->post('uploads/file', 'UploadController@upload_file');
 
     $router->get('bills-by-rooms-id/{rooms_id}', 'BillsMonthlyUsageController@find_bill_by_rooms_id');
     $router->get('bills-by-rooms-id-and-month/create/{rooms_id}/{month}', 'BillsMonthlyUsageController@create_bill');
